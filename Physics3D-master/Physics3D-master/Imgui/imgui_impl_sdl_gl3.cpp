@@ -14,11 +14,6 @@
 #include "../SDL/include/SDL_syswm.h"
 #include "../Glew/include/glew.h"
 
-#ifdef _WIN32
-#undef APIENTRY
-#define GLFW_EXPOSE_NATIVE_WIN32
-#define GLFW_EXPOSE_NATIVE_WGL
-#include <GLFW/glfw3native.h>
 
 // Data
 static double       g_Time = 0.0f;

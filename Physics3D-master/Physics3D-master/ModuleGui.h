@@ -16,7 +16,13 @@ public:
 
 	bool Init();
 	bool CleanUp();
-	update_status Update();
+	update_status Update(float dt);
+	update_status ModuleGui::PostUpdate(float dt);
+
+
+	bool capture_mouse = false;
+	bool capture_keyboard = false;
+
 
 };
 

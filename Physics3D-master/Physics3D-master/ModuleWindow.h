@@ -22,7 +22,7 @@ public:
 	SDL_Window* GetWindow();
 
 
-private:
+public:
 	//The window we'll be rendering to
 	SDL_Window* window;
 public:
