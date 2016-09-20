@@ -5,7 +5,7 @@
 #define __ModuleGui_H__
 
 #include "Module.h"
-#include <imgui.h>
+#include "Imgui\imgui.h"
 
 class ModuleGui : public Module
 {
