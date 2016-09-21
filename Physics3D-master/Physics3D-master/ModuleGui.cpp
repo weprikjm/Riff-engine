@@ -1,74 +1,80 @@
-#include "ModuleGui.h"
+#include "Globals.h"
 #include "Application.h"
-
+#include "ModuleGui.h"
+#include "Primitive.h"
+#include "PhysBody3D.h"
 
 #include "Imgui\imgui.h"
-#include "Imgui\imgui_impl_sdl_gl3.h"
-#include "Imgui\imgui_internal.h"
 
-
-#pragma comment (lib, "Glew/libx86/glew32.lib")
-
-
-
-
-ModuleGui::ModuleGui(Application* app, bool start_enabled) : Module(app, start_enabled)
-{
-
-}
-
-ModuleGui::~ModuleGui()
+ModuleEditor::ModuleEditor(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 }
 
-bool ModuleGui::Init()
+ModuleEditor::~ModuleEditor()
+{}
+
+// Load assets
+bool ModuleEditor::Start()
 {
-	//LOG("Init editor gui with imgui lib version %s", ImGui::GetVersion());
-	ImGuiIO& io = ImGui::GetIO();
-	io.IniFilename = "imgui.ini";
-
-	ImGui_ImplSdlGL3_Init(App->window->GetWindow());
-	
-	io.DisplaySize.x = SCREEN_WIDTH;
-	io.DisplaySize.y = SCREEN_HEIGHT;
-	io.IniFilename = "imgui.ini";
-	io.RenderDrawListsFn = NULL;
-	
-	//unsigned char** pixels;
-	//int width, height;
-	//io.Fonts->GetTexDataAsRGBA32(pixels, &width, &height);
+	LOG("Loading Intro assets");
+	bool ret = true;
 
 
+
+	return ret;
+}
+
+// Load assets
+bool ModuleEditor::CleanUp()
+{
+	LOG("Unloading Intro scene");
 
 	return true;
 }
 
-bool ModuleGui::CleanUp()
+// Update
+update_status ModuleEditor::Update(float dt)
 {
-	return false;
-}
+	//Create the menu bar
+	ImGui::BeginMainMenuBar();
 
-update_status ModuleGui::Update(float dt)
-{
-	ImGui_ImplSdlGL3_NewFrame(App->window->GetWindow());
-	ImGuiIO& io = ImGui::GetIO();
-	ImGui::Begin("My window");
-	ImGui::Text("Hello, world.");
-	capture_keyboard = io.WantCaptureKeyboard;
+	if (ImGui::BeginMenu("File"))
+	{
+		if (ImGui::MenuItem("Quit"))
+			return UPDATE_STOP;
 
-	return UPDATE_CONTINUE;
-	ImGui::End();
+		ImGui::EndMenu();
+	}
 
+	if (ImGui::BeginMenu("Help"))
+	{
+		if (ImGui::MenuItem("Demo"))
+			demo = !demo;
 
+		ImGui::EndMenu();
+	}
 
+	if (ImGui::BeginMenu("View"))
+	{
+		if (ImGui::MenuItem("Configuration"))
+			configuration = !configuration;
 
+		ImGui::EndMenu();
+	}
 
-	return UPDATE_CONTINUE;
-}
+	ImGui::EndMainMenuBar();
 
-update_status ModuleGui::PostUpdate(float dt)
-{
-	ImGui::Render();
+	if (demo)
+		ImGui::ShowTestWindow();
+
+	if (configuration)
+	{
+		ImGui::Begin("Configuration");
+
+		ImGui::CollapsingHeader("Application");
+
+		ImGui::End();
+	}
 
 	return UPDATE_CONTINUE;
 }

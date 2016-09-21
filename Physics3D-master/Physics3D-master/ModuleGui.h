@@ -1,29 +1,29 @@
 #pragma once
-
-
-#ifndef __ModuleGui_H__
-#define __ModuleGui_H__
-
 #include "Module.h"
-#include "Imgui\imgui.h"
+#include "Globals.h"
+#include "Primitive.h"
 
-class ModuleGui : public Module
+#include <vector>
+
+
+
+class ModuleEditor : public Module
 {
 public:
+	ModuleEditor(Application* app, bool start_enabled = true);
+	~ModuleEditor();
 
-	ModuleGui(Application* app, bool start_enabled);
-	~ModuleGui();
-
-	bool Init();
-	bool CleanUp();
+	bool Start();
 	update_status Update(float dt);
-	update_status ModuleGui::PostUpdate(float dt);
+	bool CleanUp();
 
 
-	bool capture_mouse = false;
-	bool capture_keyboard = false;
+
+public:
+
+private:
+	bool demo = false;
+	bool configuration = false;
 
 
 };
-
-#endif // __ModuleGui_H__

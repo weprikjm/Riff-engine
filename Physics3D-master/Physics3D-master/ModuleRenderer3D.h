@@ -18,7 +18,7 @@ public:
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
-	void OnResize(int width, int height);
+	void ModuleRenderer3D::OnResize(int width, int height, float fovy);
 
 public:
 
