@@ -30,6 +30,7 @@ bool ModuleRenderer3D::Init()
 
 	//Create context
 	context = SDL_GL_CreateContext(App->window->window);
+	SDL_GL_MakeCurrent(App->window->GetWindow(),context);
 	if (context == NULL)
 	{
 		LOG("OpenGL context could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -77,7 +78,7 @@ bool ModuleRenderer3D::Init()
 		glClearDepth(1.0f);
 
 		//Initialize clear color
-		glClearColor(255.0f, 255.0f, 255.0f, 1.0f);
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 		//Check for error
 		error = glGetError();
