@@ -79,12 +79,6 @@ void Application::PrepareUpdate()
 
 	dt = frame_time.ReadSec();
 
-	editor->fps_plot_values.push( 1 / dt);
-
-	if (editor->fps_plot_values.size() > 25)
-	{
-		editor->fps_plot_values.pop();
-	}
 
 	frame_time.Start();
 	ms_timer.Start();
@@ -105,6 +99,14 @@ void Application::FinishUpdate()
 {
 	if (last_sec_frame_time.Read() > 1000)
 	{
+		//Editor fps plot histogram
+		editor->fps_plot_values.push_back(last_sec_frame_count);
+
+		if (editor->fps_plot_values.size() > 10)
+		{
+			editor->fps_plot_values.pop_front();
+		}
+
 		last_sec_frame_time.Start();
 		prev_last_sec_frame_count = last_sec_frame_count;
 		last_sec_frame_count = 0;

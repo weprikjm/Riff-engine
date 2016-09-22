@@ -3,7 +3,7 @@
 #include "Globals.h"
 #include "Primitive.h"
 
-#include <queue>
+#include <deque>
 
 
 
@@ -20,7 +20,7 @@ public:
 
 
 public:
-	queue<float> fps_plot_values;
+	deque<float> fps_plot_values;
 private:
 	bool demo = false;
 	bool configuration = false;

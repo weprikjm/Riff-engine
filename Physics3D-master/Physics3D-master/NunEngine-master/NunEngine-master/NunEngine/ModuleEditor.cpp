@@ -154,17 +154,14 @@ update_status ModuleEditor::Update(float dt)
 			ImGui::Separator();
 
 			ImGui::Text("GPU:");
-			ImGui::SameLine();
-			const char* s = (const char*)glewGetString(GL_VENDOR);
-			ImGui::Text("%s",s);
+			
 
 		}
-		char title[25];
+		char title[25] = "Framerate";
 
 		if (ImGui::CollapsingHeader("Application"))
 		{
-			ImGui::PlotHistogram("##Framerate", &fps_plot_values.front(), fps_plot_values.size(), 0,title, 0.0f, 100.0f, ImVec2(310,100));
-
+			ImGui::PlotHistogram(" ", &fps_plot_values[0], fps_plot_values.size(), 0,title, 0.0f, 100.0f, ImVec2(310,100));
 		}
 		
 		
