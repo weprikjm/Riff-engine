@@ -43,6 +43,12 @@ bool ModuleRenderer3D::Init()
 	{
 		LOG("Glew failed");
 	}
+	else 
+	{
+		SDL_Log("Using Glew %s", glewGetString(GLEW_VERSION));
+	}
+
+	SDL_Log("Vendor: %s", glGetString(GL_VENDOR));
 
 	if (ret == true)
 	{

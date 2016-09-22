@@ -62,8 +62,8 @@ bool ModuleWindow::Init()
 		}
 
 		
-
-		if (NULL == (window = SDL_CreateWindow("Riff-Engine",SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, flags)))   //end of if
+		window = NULL;
+		if ((window = SDL_CreateWindow("Riff-Engine",SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, flags)))   //end of if
 		{    //gets executed every time
 			SDL_Log("Could not create SDL window: %s\n", SDL_GetError());
 			SDL_Quit();

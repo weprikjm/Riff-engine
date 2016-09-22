@@ -56,7 +56,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalLibraryDirectories>C:\Physics3DBackup\Physics3D-master\Physics3D-master\libs\glfw\lib-vc2010-32;C:\Physics3DBackup\Physics3D-master\Physics3D-master\Glew\libx86;C:\Physics3DBackup\Physics3D-master\Physics3D-master\SDL\libx86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Physics3DBackup\Physics3D-master\Physics3D-master\libs\glfw\lib-vc2010-32;C:\Physics3DBackup\Physics3D-master\Physics3D-master\Glew\libx86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
