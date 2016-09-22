@@ -25,6 +25,7 @@ Application::Application()
 	AddModule(window);
 	AddModule(physics3D);
 	AddModule(renderer3D);
+	AddModule(gui);
 	AddModule(camera);
 	AddModule(input);
 	AddModule(audio);
@@ -37,7 +38,7 @@ Application::Application()
 
 
 	//Gui
-	AddModule(gui);
+	
 
 
 

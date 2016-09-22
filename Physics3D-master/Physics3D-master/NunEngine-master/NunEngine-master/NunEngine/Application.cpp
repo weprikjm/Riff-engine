@@ -72,12 +72,32 @@ bool Application::Init()
 // ---------------------------------------------
 void Application::PrepareUpdate()
 {
+
+	
 	frame_count++;
 	last_sec_frame_count++;
 
 	dt = frame_time.ReadSec();
+
+	editor->fps_plot_values.push( 1 / dt);
+
+	if (editor->fps_plot_values.size() > 25)
+	{
+		editor->fps_plot_values.pop();
+	}
+
 	frame_time.Start();
 	ms_timer.Start();
+
+
+
+
+	//editor->fps_plot_values.push_back();
+
+
+
+
+
 }
 
 // ---------------------------------------------

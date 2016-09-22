@@ -6,7 +6,7 @@
 ModuleWindow::ModuleWindow(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	int decoy = 1;
-	window = (SDL_Window*)decoy;
+	window = NULL;
 	screen_surface = NULL;
 }
 
@@ -28,7 +28,7 @@ bool ModuleWindow::Init()
 	}
 	else
 	{
-		SDL_Init(SDL_INIT_VIDEO);
+		//SDL_Init(SDL_INIT_VIDEO);
 
 		//Create window
 		int width = SCREEN_WIDTH * SCREEN_SIZE;
@@ -63,7 +63,7 @@ bool ModuleWindow::Init()
 
 		
 		window = NULL;
-		if ((window = SDL_CreateWindow("Riff-Engine",SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, flags)))   //end of if
+		if ( NULL == (window = SDL_CreateWindow("Riff-Engine",SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, flags)))   //end of if
 		{    //gets executed every time
 			SDL_Log("Could not create SDL window: %s\n", SDL_GetError());
 			SDL_Quit();

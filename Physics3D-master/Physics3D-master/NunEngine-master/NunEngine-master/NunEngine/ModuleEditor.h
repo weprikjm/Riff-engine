@@ -3,7 +3,7 @@
 #include "Globals.h"
 #include "Primitive.h"
 
-#include <vector>
+#include <queue>
 
 
 
@@ -20,11 +20,11 @@ public:
 
 
 public:
-
+	queue<float> fps_plot_values;
 private:
 	bool demo = false;
 	bool configuration = false;
-
-	vector<float> frames_to_print;
+	bool active = false;
+	
 
 };
