@@ -100,12 +100,7 @@ void Application::FinishUpdate()
 	if (last_sec_frame_time.Read() > 1000)
 	{
 		//Editor fps plot histogram
-		editor->fps_plot_values.push_back(last_sec_frame_count);
-
-		if (editor->fps_plot_values.size() > 10)
-		{
-			editor->fps_plot_values.pop_front();
-		}
+		editor->AddFPS(last_sec_frame_count);
 
 		last_sec_frame_time.Start();
 		prev_last_sec_frame_count = last_sec_frame_count;

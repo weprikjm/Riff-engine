@@ -3,7 +3,7 @@
 #include "Globals.h"
 #include "Primitive.h"
 
-#include <deque>
+#include <vector>
 
 
 
@@ -17,10 +17,10 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
-
+	void AddFPS(float fps);
 
 public:
-	deque<float> fps_plot_values;
+	vector<float> fps_plot_values;
 private:
 	bool demo = false;
 	bool configuration = false;

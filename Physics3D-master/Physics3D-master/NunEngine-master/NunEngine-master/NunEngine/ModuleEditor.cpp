@@ -7,11 +7,16 @@
 #include "SDL\include\SDL_opengl.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
-
+#include <vector>
 
 #include "Imgui\imgui.h"
 
 #pragma comment (lib, "Glew/libx86/glew32.lib")
+
+
+
+
+#define MAX_BARS 50
 
 
 ModuleEditor::ModuleEditor(Application* app, bool start_enabled) : Module(app, start_enabled)
@@ -26,9 +31,12 @@ bool ModuleEditor::Start()
 {
 	LOG("Loading Intro assets");
 	bool ret = true;
-
-
-
+	
+	for (int i = 0; i < (MAX_BARS); i++) 
+	{
+		fps_plot_values.push_back(0);
+	}
+	
 	return ret;
 }
 
@@ -72,7 +80,7 @@ update_status ModuleEditor::Update(float dt)
 
 	ImGui::EndMainMenuBar();
 
-	if(demo)
+	if (demo)
 		ImGui::ShowTestWindow();
 
 
@@ -84,7 +92,7 @@ update_status ModuleEditor::Update(float dt)
 
 
 
-		if (ImGui::CollapsingHeader("System")) 
+		if (ImGui::CollapsingHeader("System"))
 		{
 
 			if (ImGui::Checkbox("Active", &active))
@@ -95,14 +103,14 @@ update_status ModuleEditor::Update(float dt)
 			SDL_version ver;
 			SDL_GetVersion(&ver);
 
-			ImGui::Text("SDL version: %d.%d", ver.major,ver.minor);
+			ImGui::Text("SDL version: %d.%d", ver.major, ver.minor);
 			ImGui::Separator();
 			ImGui::Text("CPUs: ");
 
 			ImGui::SameLine();
 			int i = SDL_GetCPUCount();
 			ImGui::Text("%d cores", i);
-			
+
 
 			ImGui::Text("System RAM: ");
 			i = SDL_GetSystemRAM();
@@ -112,66 +120,91 @@ update_status ModuleEditor::Update(float dt)
 			ImGui::Text("Caps: ");
 			bool isTrue = SDL_HasSSE();
 			ImGui::SameLine();
-			
-			if(isTrue)
+
+			if (isTrue)
 				ImGui::Text("SSE,");
-			
+
 			isTrue = SDL_HasSSE2();
-			
+
 			ImGui::SameLine();
-			
+
 			if (isTrue)
 				ImGui::Text("SSE2,");
 
 			isTrue = SDL_HasSSE3();
-			
+
 			ImGui::SameLine();
-			
+
 			if (isTrue)
 				ImGui::Text("SSE3,");
 			isTrue = SDL_HasSSE41();
-			
+
 			ImGui::SameLine();
-			
+
 			if (isTrue)
 				ImGui::Text("SSE41,");
 			isTrue = SDL_HasSSE42();
-			
+
 			ImGui::SameLine();
-			
+
 			if (isTrue)
 				ImGui::Text("SSE42,");
-			
+
 			isTrue = SDL_HasAVX();
-			
-			
-			
+
+
+
 			if (isTrue)
 				ImGui::Text("AVX");
 
-			
+
 
 			ImGui::Separator();
 
 			ImGui::Text("GPU:");
-			
+
 
 		}
 		char title[25] = "Framerate";
 
 		if (ImGui::CollapsingHeader("Application"))
 		{
-			ImGui::PlotHistogram(" ", &fps_plot_values[0], fps_plot_values.size(), 0,title, 0.0f, 100.0f, ImVec2(310,100));
+			ImGui::PlotHistogram(" ", &fps_plot_values[0], MAX_BARS, 2, title, 0.0f, 1000.0f, ImVec2(310, 100));
 		}
-		
-		
-		
+
+
+
 		ImGui::End();
 	}
 
 
-
-
-
 	return UPDATE_CONTINUE;
 }
+
+void ModuleEditor::AddFPS(float fps)
+{
+	static uint count = MAX_BARS;
+
+	if (count == MAX_BARS)
+	{
+		for (uint i = 0; i < MAX_BARS - 1; ++i)
+		{
+			fps_plot_values[i] = fps_plot_values[i + 1];
+		}
+	}
+	else
+		++count;
+
+	fps_plot_values[MAX_BARS - 1] = fps;
+}
+
+
+
+
+
+
+
+
+
+
+
