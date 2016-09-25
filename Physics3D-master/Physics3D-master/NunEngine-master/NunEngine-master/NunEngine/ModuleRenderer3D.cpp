@@ -114,6 +114,21 @@ bool ModuleRenderer3D::Init()
 
 	ImGui_ImplSdlGL3_Init(App->window->window);
 
+
+	index = glGenLists(1); // create a single display list
+
+	glNewList(index, GL_COMPILE); // fill the display
+	glBegin(GL_QUAD_STRIP);
+	glColor3f(1.f, 0.f, 0.f);
+	glVertex3f(0.f, 0.f, 0.f);
+	glVertex3f(1.f, 0.f, 0.f);
+	glVertex3f(0.f, 1.f, 0.f);
+	glVertex3f(1.f, 1.f, 0.f);
+	glEnd();
+	glEndList(); // end filling
+
+	// draw the display list with a single function call
+
 	return ret;
 }
 
@@ -139,6 +154,10 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
 	ImGui::Render();
+	
+	//glDrawElements(gldraw);
+
+
 	SDL_GL_SwapWindow(App->window->window);
 	return UPDATE_CONTINUE;
 }
@@ -147,6 +166,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 bool ModuleRenderer3D::CleanUp()
 {
 	LOG("Destroying 3D Renderer");
+	glDeleteLists(index, 1);
 	ImGui_ImplSdlGL3_Shutdown();
 	SDL_GL_DeleteContext(context);
 
