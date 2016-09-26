@@ -178,14 +178,51 @@ update_status ModuleEditor::Update(float dt)
 	}
 
 
-
+	uint my_id = 3;
 	//CUBE
 
-	glLineWidth(2.0f);
+	//glLineWidth(2.0f);
 	glBegin(GL_TRIANGLES);
+	
+		glColor3f(0, 50, 72);
 		glVertex3f(0.f,0.f,0.f);
 		glVertex3f(0.f, 3.f, 0.f);
 		glVertex3f(-3.f,3.f,0.f);
+
+		glColor3f(0, 50, 0);
+		glVertex3f(0.f, 0.f, 0.f);
+		glVertex3f(-3.f, 3.f, 0.f);
+		glVertex3f(-3.f, 0.f, 0.f);
+
+		glColor3f(0, 50, 34);
+		glVertex3f(0.f, 0.f, 0.f);
+		glVertex3f(0.f, 0.f, -3.f);
+		glVertex3f(0.f, 3.f, -3.f);
+		
+		glColor3f(0, 26, 87);
+		glVertex3f(0.f, 0.f, 0.f);
+		glVertex3f(0.f, 3.f, -3.f);
+		glVertex3f(0.f, 3.f, 0.f);
+		
+		glColor3f(0, 50, 72);
+		glVertex3f(-3.f, 3.f, 0.f);
+		glVertex3f(0.f, 3.f, -3.f);
+		glVertex3f(-3.f, 3.f, -3.f);
+		
+		glColor3f(0,50,72);
+		glVertex3f(0.f, 3.f, 0.f);
+		glVertex3f(0.f, 3.f, -3.f);
+		glVertex3f(-3.f, 3.f, 0.f);
+	glEnd();
+	
+	
+	/*
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glBindBuffer(GL_ARRAY_BUFFER, my_id);
+	glVertexPointer(3, GL_FLOAT, 0, NULL);
+		glVertex3f(0.f, 0.f, 0.f);
+		glVertex3f(0.f, 3.f, 0.f);
+		glVertex3f(-3.f, 3.f, 0.f);
 
 		glVertex3f(0.f, 0.f, 0.f);
 		glVertex3f(-3.f, 3.f, 0.f);
@@ -200,19 +237,23 @@ update_status ModuleEditor::Update(float dt)
 		glVertex3f(0.f, 3.f, -3.f);
 		glVertex3f(0.f, 3.f, 0.f);
 
+
 		glVertex3f(0.f, 0.f, 0.f);
 		glVertex3f(-3.f, 3.f, 0.f);
 		glVertex3f(-3.f, 0.f, 0.f);
 
+		glVertex3f(-3.f, 3.f, 0.f);
+		glVertex3f(0.f, 3.f, -3.f);
+		glVertex3f(-3.f, 3.f, -3.f);
 
 
+		glVertex3f(0.f, 3.f, 0.f);
+		glVertex3f(0.f, 3.f, -3.f);
+		glVertex3f(-3.f, 3.f, 0.f);
+	glDrawArrays(GL_TRIANGLES,0,21*3);
+	glDisableClientState(GL_VERTEX_ARRAY);
 
-	glEnd();
-
-
-
-
-
+	*/
 
 
 	return UPDATE_CONTINUE;
