@@ -200,6 +200,9 @@ update_status ModuleEditor::Update(float dt)
 		glVertex3f(0.f, 3.f, -3.f);
 		glVertex3f(0.f, 3.f, 0.f);
 
+
+
+
 		glVertex3f(0.f, 0.f, 0.f);
 		glVertex3f(-3.f, 3.f, 0.f);
 		glVertex3f(-3.f, 0.f, 0.f);
