@@ -1,4 +1,5 @@
 #include "Application.h"
+#include "ModuleEditor.h"
 
 Application::Application()
 {
@@ -56,7 +57,7 @@ bool Application::Init()
 
 
 	// After all Init calls we call Start() in all modules
-	LOG("Application Start --------------");
+	editor->LogConsole("Application Start --------------\n");
 	i = list_modules.begin();
 
 	while(i != list_modules.end() && ret == true)

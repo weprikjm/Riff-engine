@@ -87,10 +87,7 @@ update_status ModuleEditor::Update(float dt)
 	//Configuration Menu box
 	if (configuration)
 	{
-		ImGui::Begin("HardWare");
-
-
-
+		ImGui::Begin("Config");
 
 		if (ImGui::CollapsingHeader("System"))
 		{
@@ -172,88 +169,14 @@ update_status ModuleEditor::Update(float dt)
 			ImGui::PlotHistogram(" ", &fps_plot_values[0], MAX_BARS, 2, title, 0.0f, 1000.0f, ImVec2(310, 100));
 		}
 
-
-
 		ImGui::End();
+
+
 	}
 
-
-	uint my_id = 3;
-	//CUBE
-
-	//glLineWidth(2.0f);
-	glBegin(GL_TRIANGLES);
-	
-		glColor3f(0, 50, 72);
-		glVertex3f(0.f,0.f,0.f);
-		glVertex3f(0.f, 3.f, 0.f);
-		glVertex3f(-3.f,3.f,0.f);
-
-		glColor3f(0, 50, 0);
-		glVertex3f(0.f, 0.f, 0.f);
-		glVertex3f(-3.f, 3.f, 0.f);
-		glVertex3f(-3.f, 0.f, 0.f);
-
-		glColor3f(0, 50, 34);
-		glVertex3f(0.f, 0.f, 0.f);
-		glVertex3f(0.f, 0.f, -3.f);
-		glVertex3f(0.f, 3.f, -3.f);
-		
-		glColor3f(0, 26, 87);
-		glVertex3f(0.f, 0.f, 0.f);
-		glVertex3f(0.f, 3.f, -3.f);
-		glVertex3f(0.f, 3.f, 0.f);
-		
-		glColor3f(0, 50, 72);
-		glVertex3f(-3.f, 3.f, 0.f);
-		glVertex3f(0.f, 3.f, -3.f);
-		glVertex3f(-3.f, 3.f, -3.f);
-		
-		glColor3f(0,50,72);
-		glVertex3f(0.f, 3.f, 0.f);
-		glVertex3f(0.f, 3.f, -3.f);
-		glVertex3f(-3.f, 3.f, 0.f);
-	glEnd();
-	
-	
-	/*
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glBindBuffer(GL_ARRAY_BUFFER, my_id);
-	glVertexPointer(3, GL_FLOAT, 0, NULL);
-		glVertex3f(0.f, 0.f, 0.f);
-		glVertex3f(0.f, 3.f, 0.f);
-		glVertex3f(-3.f, 3.f, 0.f);
-
-		glVertex3f(0.f, 0.f, 0.f);
-		glVertex3f(-3.f, 3.f, 0.f);
-		glVertex3f(-3.f, 0.f, 0.f);
+	DrawConsole();
 
 
-		glVertex3f(0.f, 0.f, 0.f);
-		glVertex3f(0.f, 0.f, -3.f);
-		glVertex3f(0.f, 3.f, -3.f);
-
-		glVertex3f(0.f, 0.f, 0.f);
-		glVertex3f(0.f, 3.f, -3.f);
-		glVertex3f(0.f, 3.f, 0.f);
-
-
-		glVertex3f(0.f, 0.f, 0.f);
-		glVertex3f(-3.f, 3.f, 0.f);
-		glVertex3f(-3.f, 0.f, 0.f);
-
-		glVertex3f(-3.f, 3.f, 0.f);
-		glVertex3f(0.f, 3.f, -3.f);
-		glVertex3f(-3.f, 3.f, -3.f);
-
-
-		glVertex3f(0.f, 3.f, 0.f);
-		glVertex3f(0.f, 3.f, -3.f);
-		glVertex3f(-3.f, 3.f, 0.f);
-	glDrawArrays(GL_TRIANGLES,0,21*3);
-	glDisableClientState(GL_VERTEX_ARRAY);
-
-	*/
 
 
 	return UPDATE_CONTINUE;
@@ -276,13 +199,26 @@ void ModuleEditor::AddFPS(float fps)
 	fps_plot_values[MAX_BARS - 1] = fps;
 }
 
+void ModuleEditor::LogConsole(const char* text) 
+{
+	consoleText.append(text);
+	ScrollToBottom = true;
+
+}
 
 
 
+void ModuleEditor::DrawConsole()
+{
+	ImGui::Begin("Console");
+
+	ImGui::TextUnformatted(consoleText.begin());
+
+	if (ScrollToBottom)
+		ImGui::SetScrollHere(1.0f);
+	
+	ScrollToBottom = false;
 
 
-
-
-
-
-
+	ImGui::End();
+}

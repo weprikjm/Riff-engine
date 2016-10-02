@@ -28,6 +28,9 @@
     <Filter Include="Resources\Imgui">
       <UniqueIdentifier>{d56418a9-c7aa-4cf6-a2f7-9013c999c61d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Other">
+      <UniqueIdentifier>{8afdd527-2745-45ba-8388-c91d1aa8f948}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">

@@ -56,7 +56,7 @@ struct ImGuiOnceUponAFrame;         // Simple helper for running a block of code
 struct ImGuiStorage;                // Simple custom key value storage
 struct ImGuiStyle;                  // Runtime data for styling/colors
 struct ImGuiTextFilter;             // Parse and apply text filters. In format "aaaaa[,bbbb][,ccccc]"
-struct ImGuiTextBuffer;             // Text buffer for logging/accumulating text
+struct ImGuiTextBuffer;             // Text buffer for LOGging/accumulating text
 struct ImGuiTextEditCallbackData;   // Shared state of ImGui::InputText() when using custom ImGuiTextEditCallback (rare/advanced use)
 struct ImGuiSizeConstraintCallbackData;// Structure used to constraint window size in custom ways when using custom ImGuiSizeConstraintCallback (rare/advanced use)
 struct ImGuiListClipper;            // Helper to manually clip large list of items
@@ -305,7 +305,7 @@ namespace ImGui
     IMGUI_API bool          InputInt4(const char* label, int v[4], ImGuiInputTextFlags extra_flags = 0);
 
     // Widgets: Sliders (tip: ctrl+click on a slider to input with keyboard. manually input values aren't clamped, can go off-bounds)
-    IMGUI_API bool          SliderFloat(const char* label, float* v, float v_min, float v_max, const char* display_format = "%.3f", float power = 1.0f);     // adjust display_format to decorate the value with a prefix or a suffix. Use power!=1.0 for logarithmic sliders
+    IMGUI_API bool          SliderFloat(const char* label, float* v, float v_min, float v_max, const char* display_format = "%.3f", float power = 1.0f);     // adjust display_format to decorate the value with a prefix or a suffix. Use power!=1.0 for LOGarithmic sliders
     IMGUI_API bool          SliderFloat2(const char* label, float v[2], float v_min, float v_max, const char* display_format = "%.3f", float power = 1.0f);
     IMGUI_API bool          SliderFloat3(const char* label, float v[3], float v_min, float v_max, const char* display_format = "%.3f", float power = 1.0f);
     IMGUI_API bool          SliderFloat4(const char* label, float v[4], float v_min, float v_max, const char* display_format = "%.3f", float power = 1.0f);
@@ -373,20 +373,20 @@ namespace ImGui
     // Popups
     IMGUI_API void          OpenPopup(const char* str_id);                                      // mark popup as open. popups are closed when user click outside, or activate a pressable item, or CloseCurrentPopup() is called within a BeginPopup()/EndPopup() block. popup identifiers are relative to the current ID-stack (so OpenPopup and BeginPopup needs to be at the same level).
     IMGUI_API bool          BeginPopup(const char* str_id);                                     // return true if the popup is open, and you can start outputting to it. only call EndPopup() if BeginPopup() returned true!
-    IMGUI_API bool          BeginPopupModal(const char* name, bool* p_open = NULL, ImGuiWindowFlags extra_flags = 0);               // modal dialog (can't close them by clicking outside)
+    IMGUI_API bool          BeginPopupModal(const char* name, bool* p_open = NULL, ImGuiWindowFlags extra_flags = 0);               // modal diaLOG (can't close them by clicking outside)
     IMGUI_API bool          BeginPopupContextItem(const char* str_id, int mouse_button = 1);                                        // helper to open and begin popup when clicked on last item. read comments in .cpp!
     IMGUI_API bool          BeginPopupContextWindow(bool also_over_items = true, const char* str_id = NULL, int mouse_button = 1);  // helper to open and begin popup when clicked on current window.
     IMGUI_API bool          BeginPopupContextVoid(const char* str_id = NULL, int mouse_button = 1);                                 // helper to open and begin popup when clicked in void (no window).
     IMGUI_API void          EndPopup();
     IMGUI_API void          CloseCurrentPopup();                                                // close the popup we have begin-ed into. clicking on a MenuItem or Selectable automatically close the current popup.
 
-    // Logging: all text output from interface is redirected to tty/file/clipboard. By default, tree nodes are automatically opened during logging.
-    IMGUI_API void          LogToTTY(int max_depth = -1);                                       // start logging to tty
-    IMGUI_API void          LogToFile(int max_depth = -1, const char* filename = NULL);         // start logging to file
-    IMGUI_API void          LogToClipboard(int max_depth = -1);                                 // start logging to OS clipboard
-    IMGUI_API void          LogFinish();                                                        // stop logging (close file, etc.)
-    IMGUI_API void          LogButtons();                                                       // helper to display buttons for logging to tty/file/clipboard
-    IMGUI_API void          LogText(const char* fmt, ...) IM_PRINTFARGS(1);                     // pass text data straight to log (without being displayed)
+    // LOGging: all text output from interface is redirected to tty/file/clipboard. By default, tree nodes are automatically opened during LOGging.
+    IMGUI_API void          LOGToTTY(int max_depth = -1);                                       // start LOGging to tty
+    IMGUI_API void          LOGToFile(int max_depth = -1, const char* filename = NULL);         // start LOGging to file
+    IMGUI_API void          LOGToClipboard(int max_depth = -1);                                 // start LOGging to OS clipboard
+    IMGUI_API void          LOGFinish();                                                        // stop LOGging (close file, etc.)
+    IMGUI_API void          LOGButtons();                                                       // helper to display buttons for LOGging to tty/file/clipboard
+    IMGUI_API void          LOGText(const char* fmt, ...) IM_PRINTFARGS(1);                     // pass text data straight to LOG (without being displayed)
 
     // Clipping
     IMGUI_API void          PushClipRect(const ImVec2& clip_rect_min, const ImVec2& clip_rect_max, bool intersect_with_current_clip_rect);
@@ -543,7 +543,7 @@ enum ImGuiTreeNodeFlags_
     ImGuiTreeNodeFlags_Framed               = 1 << 1,   // Full colored frame (e.g. for CollapsingHeader)
     ImGuiTreeNodeFlags_AllowOverlapMode     = 1 << 2,   // Hit testing to allow subsequent widgets to overlap this one
     ImGuiTreeNodeFlags_NoTreePushOnOpen     = 1 << 3,   // Don't do a TreePush() when open (e.g. for CollapsingHeader) = no extra indent nor pushing on ID stack
-    ImGuiTreeNodeFlags_NoAutoOpenOnLog      = 1 << 4,   // Don't automatically and temporarily open node when Logging is active (by default logging will automatically open tree nodes)
+    ImGuiTreeNodeFlags_NoAutoOpenOnLOG      = 1 << 4,   // Don't automatically and temporarily open node when LOGging is active (by default LOGging will automatically open tree nodes)
     ImGuiTreeNodeFlags_DefaultOpen          = 1 << 5,   // Default node to be open
     ImGuiTreeNodeFlags_OpenOnDoubleClick    = 1 << 6,   // Need double-click to open node
     ImGuiTreeNodeFlags_OpenOnArrow          = 1 << 7,   // Only open when clicking on the arrow part. If ImGuiTreeNodeFlags_OpenOnDoubleClick is also set, single-click arrow or double-click all box to open.
@@ -551,7 +551,7 @@ enum ImGuiTreeNodeFlags_
     ImGuiTreeNodeFlags_Bullet               = 1 << 9,   // Display a bullet instead of arrow
     //ImGuITreeNodeFlags_SpanAllAvailWidth  = 1 << 10,  // FIXME: TODO: Extend hit box horizontally even if not framed
     //ImGuiTreeNodeFlags_NoScrollOnOpen     = 1 << 11,  // FIXME: TODO: Disable automatic scroll on TreePop() if node got just open and contents is not visible
-    ImGuiTreeNodeFlags_CollapsingHeader     = ImGuiTreeNodeFlags_Framed | ImGuiTreeNodeFlags_NoAutoOpenOnLog
+    ImGuiTreeNodeFlags_CollapsingHeader     = ImGuiTreeNodeFlags_Framed | ImGuiTreeNodeFlags_NoAutoOpenOnLOG
 };
 
 // Flags for ImGui::Selectable()
@@ -739,7 +739,7 @@ struct ImGuiIO
     float         DeltaTime;                // = 1.0f/60.0f         // Time elapsed since last frame, in seconds.
     float         IniSavingRate;            // = 5.0f               // Maximum time between saving positions/sizes to .ini file, in seconds.
     const char*   IniFilename;              // = "imgui.ini"        // Path to .ini file. NULL to disable .ini saving.
-    const char*   LogFilename;              // = "imgui_log.txt"    // Path to .log file (default parameter to ImGui::LogToFile when no file is specified).
+    const char*   LOGFilename;              // = "imgui_LOG.txt"    // Path to .LOG file (default parameter to ImGui::LOGToFile when no file is specified).
     float         MouseDoubleClickTime;     // = 0.30f              // Time for a double-click, in seconds.
     float         MouseDoubleClickMaxDist;  // = 6.0f               // Distance threshold to stay in to validate a double-click, in pixels.
     float         MouseDragThreshold;       // = 6.0f               // Distance threshold before considering we are dragging
@@ -944,7 +944,7 @@ struct ImGuiTextFilter
     IMGUI_API void      Build();
 };
 
-// Helper: Text buffer for logging/accumulating text
+// Helper: Text buffer for LOGging/accumulating text
 struct ImGuiTextBuffer
 {
     ImVector<char>      Buf;
@@ -982,7 +982,7 @@ struct ImGuiStorage
     };
     ImVector<Pair>      Data;
 
-    // - Get***() functions find pair, never add/allocate. Pairs are sorted so a query is O(log N)
+    // - Get***() functions find pair, never add/allocate. Pairs are sorted so a query is O(LOG N)
     // - Set***() functions find pair, insertion on demand if missing.
     // - Sorted insertion is costly, paid once. A typical frame shouldn't need to insert any new pair.
     IMGUI_API void      Clear();
@@ -1182,7 +1182,7 @@ struct ImDrawList
 
     ImDrawList() { _OwnerName = NULL; Clear(); }
     ~ImDrawList() { ClearFreeMemory(); }
-    IMGUI_API void  PushClipRect(ImVec2 clip_rect_min, ImVec2 clip_rect_max, bool intersect_with_current_clip_rect = false);  // Render-level scissoring. This is passed down to your render function but not used for CPU-side coarse clipping. Prefer using higher-level ImGui::PushClipRect() to affect logic (hit-testing and widget culling)
+    IMGUI_API void  PushClipRect(ImVec2 clip_rect_min, ImVec2 clip_rect_max, bool intersect_with_current_clip_rect = false);  // Render-level scissoring. This is passed down to your render function but not used for CPU-side coarse clipping. Prefer using higher-level ImGui::PushClipRect() to affect LOGic (hit-testing and widget culling)
     IMGUI_API void  PushClipRectFullScreen();
     IMGUI_API void  PopClipRect();
     IMGUI_API void  PushTextureID(const ImTextureID& texture_id);

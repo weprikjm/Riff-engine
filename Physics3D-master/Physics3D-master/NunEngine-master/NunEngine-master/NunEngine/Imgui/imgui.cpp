@@ -4,7 +4,7 @@
 // See ImGui::ShowTestWindow() in imgui_demo.cpp for demo code.
 // Newcomers, read 'Programmer guide' below for notes on how to setup ImGui in your codebase.
 // Get latest version at https://github.com/ocornut/imgui
-// Releases change-log at https://github.com/ocornut/imgui/releases
+// Releases change-LOG at https://github.com/ocornut/imgui/releases
 // Developed by Omar Cornut and every direct or indirect contributors to the GitHub.
 // This library is free but I need your support to sustain development and maintenance.
 // If you work for a company, please consider financial support, e.g: https://www.patreon.com/imgui
@@ -147,8 +147,8 @@
  ====================
 
  Occasionally introducing changes that are breaking the API. The breakage are generally minor and easy to fix.
- Here is a change-log of API breaking changes, if you are using one of the functions listed, expect to have to fix some code.
- Also read releases logs https://github.com/ocornut/imgui/releases for more details.
+ Here is a change-LOG of API breaking changes, if you are using one of the functions listed, expect to have to fix some code.
+ Also read releases LOGs https://github.com/ocornut/imgui/releases for more details.
 
  - 2016/07/30 (1.50) - SameLine(x) with x>0.0f is now relative to left of column/group if any, and not always to left of window. This was sort of always the intent and hopefully breakage should be minimal.
  - 2016/05/12 (1.49) - title bar (using ImGuiCol_TitleBg/ImGuiCol_TitleBgActive colors) isn't rendered over a window background (ImGuiCol_WindowBg color) anymore. 
@@ -164,7 +164,7 @@
  - 2016/05/07 (1.49) - removed confusing set of GetInternalState(), GetInternalStateSize(), SetInternalState() functions. Now using CreateContext(), DestroyContext(), GetCurrentContext(), SetCurrentContext().
  - 2016/05/02 (1.49) - renamed SetNextTreeNodeOpened() to SetNextTreeNodeOpen(), no redirection.
  - 2016/05/01 (1.49) - obsoleted old signature of CollapsingHeader(const char* label, const char* str_id = NULL, bool display_frame = true, bool default_open = false) as extra parameters were badly designed and rarely used. You can replace the "default_open = true" flag in new API with CollapsingHeader(label, ImGuiTreeNodeFlags_DefaultOpen).
- - 2016/04/26 (1.49) - changed ImDrawList::PushClipRect(ImVec4 rect) to ImDraw::PushClipRect(Imvec2 min,ImVec2 max,bool intersect_with_current_clip_rect=false). Note that higher-level ImGui::PushClipRect() is preferable because it will clip at logic/widget level, whereas ImDrawList::PushClipRect() only affect your renderer.
+ - 2016/04/26 (1.49) - changed ImDrawList::PushClipRect(ImVec4 rect) to ImDraw::PushClipRect(Imvec2 min,ImVec2 max,bool intersect_with_current_clip_rect=false). Note that higher-level ImGui::PushClipRect() is preferable because it will clip at LOGic/widget level, whereas ImDrawList::PushClipRect() only affect your renderer.
  - 2016/04/03 (1.48) - removed style.WindowFillAlphaDefault setting which was redundant. Bake default BG alpha inside style.Colors[ImGuiCol_WindowBg] and all other Bg color values. (ref github issue #337).
  - 2016/04/03 (1.48) - renamed ImGuiCol_TooltipBg to ImGuiCol_PopupBg, used by popups/menus and tooltips. popups/menus were previously using ImGuiCol_WindowBg. (ref github issue #337)
  - 2016/03/21 (1.48) - renamed GetWindowFont() to GetFont(), GetWindowFontSize() to GetFontSize(). Kept inline redirection function (will obsolete).
@@ -394,7 +394,7 @@
     When 'io.WantInputsCharacters' is set to may want to notify your OS to popup an on-screen keyboard, if available.
     ImGui is tracking dragging and widget activity that may occur outside the boundary of a window, so 'io.WantCaptureMouse' is a more accurate and complete than testing for ImGui::IsMouseHoveringAnyWindow().
     (Advanced note: text input releases focus on Return 'KeyDown', so the following Return 'KeyUp' event that your application receive will typically have 'io.WantcaptureKeyboard=false'. 
-     Depending on your application logic it may or not be inconvenient. You might want to track which key-downs were for ImGui (e.g. with an array of bool) and filter out the corresponding key-ups.)
+     Depending on your application LOGic it may or not be inconvenient. You might want to track which key-downs were for ImGui (e.g. with an array of bool) and filter out the corresponding key-ups.)
 
  Q: How can I load a different font than the default? (default is an embedded version of ProggyClean.ttf, rendered at size 13)
  A: Use the font atlas to load the TTF file you want:
@@ -489,7 +489,7 @@
  - input text: resize behavior - field could stretch when being edited? hover tooltip shows more text?
  - input text: add ImGuiInputTextFlags_EnterToApply? (off #218)
  - input text: add discard flag (e.g. ImGuiInputTextFlags_DiscardActiveBuffer) or make it easier to clear active focus for text replacement during edition (#725)
- - input text multi-line: don't directly call AddText() which does an unnecessary vertex reserve for character count prior to clipping. and/or more line-based clipping to AddText(). and/or reorganize TextUnformatted/RenderText for more efficiency for large text (e.g TextUnformatted could clip and log separately, etc).
+ - input text multi-line: don't directly call AddText() which does an unnecessary vertex reserve for character count prior to clipping. and/or more line-based clipping to AddText(). and/or reorganize TextUnformatted/RenderText for more efficiency for large text (e.g TextUnformatted could clip and LOG separately, etc).
  - input text multi-line: way to dynamically grow the buffer without forcing the user to initially allocate for worse case (follow up on #200)
  - input text multi-line: line numbers? status bar? (follow up on #200)
  - input text multi-line: behave better when user changes input buffer while editing is active (even though it is illegal behavior). namely, the change of buffer can create a scrollbar glitch (#725)
@@ -571,10 +571,10 @@
  - font: add support for kerning, probably optional. perhaps default to (32..128)^2 matrix ~ 36KB then hash fallback.
  - font: add a simpler CalcTextSizeA() api? current one ok but not welcome if user needs to call it directly (without going through ImGui::CalcTextSize)
  - font: fix AddRemapChar() to work before font has been built.
- - log: LogButtons() options for specifying depth and/or hiding depth slider
- - log: have more control over the log scope (e.g. stop logging when leaving current tree node scope)
- - log: be able to log anything (e.g. right-click on a window/tree-node, shows context menu? log into tty/file/clipboard)
- - log: let user copy any window content to clipboard easily (CTRL+C on windows? while moving it? context menu?). code is commented because it fails with multiple Begin/End pairs.
+ - LOG: LOGButtons() options for specifying depth and/or hiding depth slider
+ - LOG: have more control over the LOG scope (e.g. stop LOGging when leaving current tree node scope)
+ - LOG: be able to LOG anything (e.g. right-click on a window/tree-node, shows context menu? LOG into tty/file/clipboard)
+ - LOG: let user copy any window content to clipboard easily (CTRL+C on windows? while moving it? context menu?). code is commented because it fails with multiple Begin/End pairs.
  - filters: set a current filter that tree node can automatically query to hide themselves
  - filters: handle wildcards (with implicit leading/trailing *), regexps
  - shortcuts: add a shortcut api, e.g. parse "&Save" and/or "Save (CTRL+S)", pass in to widgets or provide simple ways to use (button=activate, input=focus)
@@ -648,7 +648,7 @@
 // Forward Declarations
 //-------------------------------------------------------------------------
 
-static void             LogRenderedText(const ImVec2& ref_pos, const char* text, const char* text_end = NULL);
+static void             LOGRenderedText(const ImVec2& ref_pos, const char* text, const char* text_end = NULL);
 
 static void             PushMultiItemsWidths(int components, float w_full = 0.0f);
 static float            GetDraggedColumnOffset(int column_index);
@@ -802,7 +802,7 @@ ImGuiIO::ImGuiIO()
     DeltaTime = 1.0f/60.0f;
     IniSavingRate = 5.0f;
     IniFilename = "imgui.ini";
-    LogFilename = "imgui_log.txt";
+    LOGFilename = "imgui_LOG.txt";
     Fonts = &GImDefaultFontAtlas;
     FontGlobalScale = 1.0f;
     DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
@@ -1198,7 +1198,7 @@ ImU32 ImGui::ColorConvertFloat4ToU32(const ImVec4& in)
 }
 
 // Convert rgb floats ([0-1],[0-1],[0-1]) to hsv floats ([0-1],[0-1],[0-1]), from Foley & van Dam p592
-// Optimized http://lolengine.net/blog/2013/01/13/fast-rgb-to-hsv
+// Optimized http://lolengine.net/bLOG/2013/01/13/fast-rgb-to-hsv
 void ImGui::ColorConvertRGBtoHSV(float r, float g, float b, float& out_h, float& out_s, float& out_v)
 {
     float K = 0.f;
@@ -1537,7 +1537,7 @@ bool ImGuiTextFilter::PassFilter(const char* text, const char* text_end) const
 #define va_copy(dest, src) (dest = src)
 #endif
 
-// Helper: Text buffer for logging/accumulating text
+// Helper: Text buffer for LOGging/accumulating text
 void ImGuiTextBuffer::appendv(const char* fmt, va_list args)
 {
     va_list args_copy;
@@ -1876,19 +1876,19 @@ bool ImGui::ItemAdd(const ImRect& bb, const ImGuiID* id)
     return true;
 }
 
-bool ImGui::IsClippedEx(const ImRect& bb, const ImGuiID* id, bool clip_even_when_logged)
+bool ImGui::IsClippedEx(const ImRect& bb, const ImGuiID* id, bool clip_even_when_LOGged)
 {
     ImGuiContext& g = *GImGui;
     ImGuiWindow* window = GetCurrentWindowRead();
 
     if (!bb.Overlaps(window->ClipRect))
         if (!id || *id != GImGui->ActiveId)
-            if (clip_even_when_logged || !g.LogEnabled)
+            if (clip_even_when_LOGged || !g.LOGEnabled)
                 return true;
     return false;
 }
 
-// NB: This is an internal helper. The user-facing IsItemHovered() is using data emitted from ItemAdd(), with a slightly different logic.
+// NB: This is an internal helper. The user-facing IsItemHovered() is using data emitted from ItemAdd(), with a slightly different LOGic.
 bool ImGui::IsHovered(const ImRect& bb, ImGuiID id, bool flatten_childs)
 {
     ImGuiContext& g = *GImGui;
@@ -2064,8 +2064,8 @@ void ImGui::NewFrame()
     if (!g.Initialized)
     {
         // Initialize on first frame
-        g.LogClipboard = (ImGuiTextBuffer*)ImGui::MemAlloc(sizeof(ImGuiTextBuffer));
-        IM_PLACEMENT_NEW(g.LogClipboard) ImGuiTextBuffer();
+        g.LOGClipboard = (ImGuiTextBuffer*)ImGui::MemAlloc(sizeof(ImGuiTextBuffer));
+        IM_PLACEMENT_NEW(g.LOGClipboard) ImGuiTextBuffer();
 
         IM_ASSERT(g.Settings.empty());
         LoadSettings();
@@ -2336,15 +2336,15 @@ void ImGui::Shutdown()
     g.InputTextState.InitialText.clear();
     g.InputTextState.TempTextBuffer.clear();
 
-    if (g.LogFile && g.LogFile != stdout)
+    if (g.LOGFile && g.LOGFile != stdout)
     {
-        fclose(g.LogFile);
-        g.LogFile = NULL;
+        fclose(g.LOGFile);
+        g.LOGFile = NULL;
     }
-    if (g.LogClipboard)
+    if (g.LOGClipboard)
     {
-        g.LogClipboard->~ImGuiTextBuffer();
-        ImGui::MemFree(g.LogClipboard);
+        g.LOGClipboard->~ImGuiTextBuffer();
+        ImGui::MemFree(g.LOGClipboard);
     }
 
     g.Initialized = false;
@@ -2721,29 +2721,29 @@ const char* ImGui::FindRenderedTextEnd(const char* text, const char* text_end)
     return text_display_end;
 }
 
-// Pass text data straight to log (without being displayed)
-void ImGui::LogText(const char* fmt, ...)
+// Pass text data straight to LOG (without being displayed)
+void ImGui::LOGText(const char* fmt, ...)
 {
     ImGuiContext& g = *GImGui;
-    if (!g.LogEnabled)
+    if (!g.LOGEnabled)
         return;
 
     va_list args;
     va_start(args, fmt);
-    if (g.LogFile)
+    if (g.LOGFile)
     {
-        vfprintf(g.LogFile, fmt, args);
+        vfprintf(g.LOGFile, fmt, args);
     }
     else
     {
-        g.LogClipboard->appendv(fmt, args);
+        g.LOGClipboard->appendv(fmt, args);
     }
     va_end(args);
 }
 
 // Internal version that takes a position to decide on newline placement and pad items according to their depth.
 // We split text into individual lines to add current tree level padding
-static void LogRenderedText(const ImVec2& ref_pos, const char* text, const char* text_end)
+static void LOGRenderedText(const ImVec2& ref_pos, const char* text, const char* text_end)
 {
     ImGuiContext& g = *GImGui;
     ImGuiWindow* window = ImGui::GetCurrentWindowRead();
@@ -2751,16 +2751,16 @@ static void LogRenderedText(const ImVec2& ref_pos, const char* text, const char*
     if (!text_end)
         text_end = ImGui::FindRenderedTextEnd(text, text_end);
 
-    const bool log_new_line = ref_pos.y > window->DC.LogLinePosY+1;
-    window->DC.LogLinePosY = ref_pos.y;
+    const bool LOG_new_line = ref_pos.y > window->DC.LOGLinePosY+1;
+    window->DC.LOGLinePosY = ref_pos.y;
 
     const char* text_remaining = text;
-    if (g.LogStartDepth > window->DC.TreeDepth)  // Re-adjust padding if we have popped out of our starting depth
-        g.LogStartDepth = window->DC.TreeDepth;
-    const int tree_depth = (window->DC.TreeDepth - g.LogStartDepth);
+    if (g.LOGStartDepth > window->DC.TreeDepth)  // Re-adjust padding if we have popped out of our starting depth
+        g.LOGStartDepth = window->DC.TreeDepth;
+    const int tree_depth = (window->DC.TreeDepth - g.LOGStartDepth);
     for (;;)
     {
-        // Split the string. Each new line (after a '\n') is followed by spacing corresponding to the current depth of our log entry.
+        // Split the string. Each new line (after a '\n') is followed by spacing corresponding to the current depth of our LOG entry.
         const char* line_end = text_remaining;
         while (line_end < text_end)
             if (*line_end == '\n')
@@ -2780,10 +2780,10 @@ static void LogRenderedText(const ImVec2& ref_pos, const char* text, const char*
         if (line_end != NULL && !(is_last_line && (line_end - text_remaining)==0))
         {
             const int char_count = (int)(line_end - text_remaining);
-            if (log_new_line || !is_first_line)
-                ImGui::LogText(IM_NEWLINE "%*s%.*s", tree_depth*4, "", char_count, text_remaining);
+            if (LOG_new_line || !is_first_line)
+                ImGui::LOGText(IM_NEWLINE "%*s%.*s", tree_depth*4, "", char_count, text_remaining);
             else
-                ImGui::LogText(" %.*s", char_count, text_remaining);
+                ImGui::LOGText(" %.*s", char_count, text_remaining);
         }
 
         if (is_last_line)
@@ -2816,8 +2816,8 @@ void ImGui::RenderText(ImVec2 pos, const char* text, const char* text_end, bool 
     if (text_len > 0)
     {
         window->DrawList->AddText(g.Font, g.FontSize, pos, GetColorU32(ImGuiCol_Text), text, text_display_end);
-        if (g.LogEnabled)
-            LogRenderedText(pos, text, text_display_end);
+        if (g.LOGEnabled)
+            LOGRenderedText(pos, text, text_display_end);
     }
 }
 
@@ -2833,8 +2833,8 @@ void ImGui::RenderTextWrapped(ImVec2 pos, const char* text, const char* text_end
     if (text_len > 0)
     {
         window->DrawList->AddText(g.Font, g.FontSize, pos, GetColorU32(ImGuiCol_Text), text, text_end, wrap_width);
-        if (g.LogEnabled)
-            LogRenderedText(pos, text, text_end);
+        if (g.LOGEnabled)
+            LOGRenderedText(pos, text, text_end);
     }
 }
 
@@ -2873,8 +2873,8 @@ void ImGui::RenderTextClipped(const ImVec2& pos_min, const ImVec2& pos_max, cons
     {
         window->DrawList->AddText(g.Font, g.FontSize, pos, GetColorU32(ImGuiCol_Text), text, text_display_end, 0.0f, NULL);
     }
-    if (g.LogEnabled)
-        LogRenderedText(pos, text, text_display_end);
+    if (g.LOGEnabled)
+        LOGRenderedText(pos, text, text_display_end);
 }
 
 // Render a rectangle shaped with optional rounding and borders
@@ -2982,9 +2982,9 @@ void ImGui::CalcListClipping(int items_count, float items_height, int* out_items
 {
     ImGuiContext& g = *GImGui;
     ImGuiWindow* window = GetCurrentWindowRead();
-    if (g.LogEnabled)
+    if (g.LOGEnabled)
     {
-        // If logging is active, do not perform any clipping
+        // If LOGging is active, do not perform any clipping
         *out_items_display_start = 0;
         *out_items_display_end = items_count;
         return;
@@ -4231,7 +4231,7 @@ bool ImGui::Begin(const char* name, bool* p_open, const ImVec2& size_on_first_us
         window->DC.CurrentLineTextBaseOffset = window->DC.PrevLineTextBaseOffset = 0.0f;
         window->DC.MenuBarAppending = false;
         window->DC.MenuBarOffsetX = ImMax(window->WindowPadding.x, style.ItemSpacing.x);
-        window->DC.LogLinePosY = window->DC.CursorPos.y - 9999.0f;
+        window->DC.LOGLinePosY = window->DC.CursorPos.y - 9999.0f;
         window->DC.ChildWindows.resize(0);
         window->DC.LayoutType = ImGuiLayoutType_Vertical;
         window->DC.ItemWidth = window->ItemWidthDefault;
@@ -4294,12 +4294,12 @@ bool ImGui::Begin(const char* name, bool* p_open, const ImVec2& size_on_first_us
         window->WindowRectClipped.Clip(window->ClipRect);
 
         // Pressing CTRL+C while holding on a window copy its content to the clipboard
-        // This works but 1. doesn't handle multiple Begin/End pairs, 2. recursing into another Begin/End pair - so we need to work that out and add better logging scope.
+        // This works but 1. doesn't handle multiple Begin/End pairs, 2. recursing into another Begin/End pair - so we need to work that out and add better LOGging scope.
         // Maybe we can support CTRL+C on every element?
         /*
         if (g.ActiveId == move_id)
             if (g.IO.KeyCtrl && IsKeyPressedMap(ImGuiKey_C))
-                ImGui::LogToClipboard();
+                ImGui::LOGToClipboard();
         */
     }
 
@@ -4352,9 +4352,9 @@ void ImGui::End()
     Columns(1, "#CloseColumns");
     PopClipRect();   // inner window clip rectangle
 
-    // Stop logging
-    if (!(window->Flags & ImGuiWindowFlags_ChildWindow))    // FIXME: add more options for scope of logging
-        LogFinish();
+    // Stop LOGging
+    if (!(window->Flags & ImGuiWindowFlags_ChildWindow))    // FIXME: add more options for scope of LOGging
+        LOGFinish();
 
     // Pop
     // NB: we don't clear 'window->RootWindow'. The pointer is allowed to live until the next call to Begin().
@@ -4369,7 +4369,7 @@ void ImGui::End()
 // The entire piece of code below is rather confusing because:
 // - We handle absolute seeking (when first clicking outside the grab) and relative manipulation (afterward or when clicking inside the grab)
 // - We store values as normalized ratio and in a form that allows the window content to change while we are holding on a scrollbar
-// - We handle both horizontal and vertical scrollbars, which makes the terminology not ideal.
+// - We handle both horizontal and vertical scrollbars, which makes the terminoLOGy not ideal.
 static void Scrollbar(ImGuiWindow* window, bool horizontal)
 {
     ImGuiContext& g = *GImGui;
@@ -5309,8 +5309,8 @@ void ImGui::TextUnformatted(const char* text, const char* text_end)
         {
             ImVec2 pos = text_pos;
 
-            // Lines to skip (can't skip when logging text)
-            if (!g.LogEnabled)
+            // Lines to skip (can't skip when LOGging text)
+            if (!g.LOGEnabled)
             {
                 int lines_skippable = (int)((clip_rect.Min.y - text_pos.y) / line_height);
                 if (lines_skippable > 0)
@@ -5492,7 +5492,7 @@ bool ImGui::ButtonBehavior(const ImRect& bb, ImGuiID id, bool* out_hovered, bool
             }
 
             // 'Repeat' mode acts when held regardless of _PressedOn flags (see table above). 
-            // Relies on repeat logic of IsMouseClicked() but we may as well do it ourselves if we end up exposing finer RepeatDelay/RepeatRate settings.
+            // Relies on repeat LOGic of IsMouseClicked() but we may as well do it ourselves if we end up exposing finer RepeatDelay/RepeatRate settings.
             if ((flags & ImGuiButtonFlags_Repeat) && g.ActiveId == id && g.IO.MouseDownDuration[0] > 0.0f && IsMouseClicked(0, true))
                 pressed = true;
         }
@@ -5686,110 +5686,110 @@ bool ImGui::ImageButton(ImTextureID user_texture_id, const ImVec2& size, const I
     return pressed;
 }
 
-// Start logging ImGui output to TTY
-void ImGui::LogToTTY(int max_depth)
+// Start LOGging ImGui output to TTY
+void ImGui::LOGToTTY(int max_depth)
 {
     ImGuiContext& g = *GImGui;
-    if (g.LogEnabled)
+    if (g.LOGEnabled)
         return;
     ImGuiWindow* window = GetCurrentWindowRead();
 
-    g.LogEnabled = true;
-    g.LogFile = stdout;
-    g.LogStartDepth = window->DC.TreeDepth;
+    g.LOGEnabled = true;
+    g.LOGFile = stdout;
+    g.LOGStartDepth = window->DC.TreeDepth;
     if (max_depth >= 0)
-        g.LogAutoExpandMaxDepth = max_depth;
+        g.LOGAutoExpandMaxDepth = max_depth;
 }
 
-// Start logging ImGui output to given file
-void ImGui::LogToFile(int max_depth, const char* filename)
+// Start LOGging ImGui output to given file
+void ImGui::LOGToFile(int max_depth, const char* filename)
 {
     ImGuiContext& g = *GImGui;
-    if (g.LogEnabled)
+    if (g.LOGEnabled)
         return;
     ImGuiWindow* window = GetCurrentWindowRead();
 
     if (!filename)
     {
-        filename = g.IO.LogFilename;
+        filename = g.IO.LOGFilename;
         if (!filename)
             return;
     }
 
-    g.LogFile = fopen(filename, "ab");
-    if (!g.LogFile)
+    g.LOGFile = fopen(filename, "ab");
+    if (!g.LOGFile)
     {
-        IM_ASSERT(g.LogFile != NULL); // Consider this an error
+        IM_ASSERT(g.LOGFile != NULL); // Consider this an error
         return;
     }
-    g.LogEnabled = true;
-    g.LogStartDepth = window->DC.TreeDepth;
+    g.LOGEnabled = true;
+    g.LOGStartDepth = window->DC.TreeDepth;
     if (max_depth >= 0)
-        g.LogAutoExpandMaxDepth = max_depth;
+        g.LOGAutoExpandMaxDepth = max_depth;
 }
 
-// Start logging ImGui output to clipboard
-void ImGui::LogToClipboard(int max_depth)
+// Start LOGging ImGui output to clipboard
+void ImGui::LOGToClipboard(int max_depth)
 {
     ImGuiContext& g = *GImGui;
-    if (g.LogEnabled)
+    if (g.LOGEnabled)
         return;
     ImGuiWindow* window = GetCurrentWindowRead();
 
-    g.LogEnabled = true;
-    g.LogFile = NULL;
-    g.LogStartDepth = window->DC.TreeDepth;
+    g.LOGEnabled = true;
+    g.LOGFile = NULL;
+    g.LOGStartDepth = window->DC.TreeDepth;
     if (max_depth >= 0)
-        g.LogAutoExpandMaxDepth = max_depth;
+        g.LOGAutoExpandMaxDepth = max_depth;
 }
 
-void ImGui::LogFinish()
+void ImGui::LOGFinish()
 {
     ImGuiContext& g = *GImGui;
-    if (!g.LogEnabled)
+    if (!g.LOGEnabled)
         return;
 
-    LogText(IM_NEWLINE);
-    g.LogEnabled = false;
-    if (g.LogFile != NULL)
+    LOGText(IM_NEWLINE);
+    g.LOGEnabled = false;
+    if (g.LOGFile != NULL)
     {
-        if (g.LogFile == stdout)
-            fflush(g.LogFile);
+        if (g.LOGFile == stdout)
+            fflush(g.LOGFile);
         else
-            fclose(g.LogFile);
-        g.LogFile = NULL;
+            fclose(g.LOGFile);
+        g.LOGFile = NULL;
     }
-    if (g.LogClipboard->size() > 1)
+    if (g.LOGClipboard->size() > 1)
     {
         if (g.IO.SetClipboardTextFn)
-            g.IO.SetClipboardTextFn(g.LogClipboard->begin());
-        g.LogClipboard->clear();
+            g.IO.SetClipboardTextFn(g.LOGClipboard->begin());
+        g.LOGClipboard->clear();
     }
 }
 
-// Helper to display logging buttons
-void ImGui::LogButtons()
+// Helper to display LOGging buttons
+void ImGui::LOGButtons()
 {
     ImGuiContext& g = *GImGui;
 
-    PushID("LogButtons");
-    const bool log_to_tty = Button("Log To TTY"); SameLine();
-    const bool log_to_file = Button("Log To File"); SameLine();
-    const bool log_to_clipboard = Button("Log To Clipboard"); SameLine();
+    PushID("LOGButtons");
+    const bool LOG_to_tty = Button("LOG To TTY"); SameLine();
+    const bool LOG_to_file = Button("LOG To File"); SameLine();
+    const bool LOG_to_clipboard = Button("LOG To Clipboard"); SameLine();
     PushItemWidth(80.0f);
     PushAllowKeyboardFocus(false);
-    SliderInt("Depth", &g.LogAutoExpandMaxDepth, 0, 9, NULL);
+    SliderInt("Depth", &g.LOGAutoExpandMaxDepth, 0, 9, NULL);
     PopAllowKeyboardFocus();
     PopItemWidth();
     PopID();
 
-    // Start logging at the end of the function so that the buttons don't appear in the log
-    if (log_to_tty)
-        LogToTTY(g.LogAutoExpandMaxDepth);
-    if (log_to_file)
-        LogToFile(g.LogAutoExpandMaxDepth, g.IO.LogFilename);
-    if (log_to_clipboard)
-        LogToClipboard(g.LogAutoExpandMaxDepth);
+    // Start LOGging at the end of the function so that the buttons don't appear in the LOG
+    if (LOG_to_tty)
+        LOGToTTY(g.LOGAutoExpandMaxDepth);
+    if (LOG_to_file)
+        LOGToFile(g.LOGAutoExpandMaxDepth, g.IO.LOGFilename);
+    if (LOG_to_clipboard)
+        LOGToClipboard(g.LOGAutoExpandMaxDepth);
 }
 
 bool ImGui::TreeNodeBehaviorIsOpen(ImGuiID id, ImGuiTreeNodeFlags flags)
@@ -5831,9 +5831,9 @@ bool ImGui::TreeNodeBehaviorIsOpen(ImGuiID id, ImGuiTreeNodeFlags flags)
         is_open = storage->GetInt(id, (flags & ImGuiTreeNodeFlags_DefaultOpen) ? 1 : 0) != 0;
     }
 
-    // When logging is enabled, we automatically expand tree nodes (but *NOT* collapsing headers.. seems like sensible behavior).
-    // NB- If we are above max depth we still allow manually opened nodes to be logged.
-    if (g.LogEnabled && !(flags & ImGuiTreeNodeFlags_NoAutoOpenOnLog) && window->DC.TreeDepth < g.LogAutoExpandMaxDepth)
+    // When LOGging is enabled, we automatically expand tree nodes (but *NOT* collapsing headers.. seems like sensible behavior).
+    // NB- If we are above max depth we still allow manually opened nodes to be LOGged.
+    if (g.LOGEnabled && !(flags & ImGuiTreeNodeFlags_NoAutoOpenOnLOG) && window->DC.TreeDepth < g.LOGAutoExpandMaxDepth)
         is_open = true;
 
     return is_open;
@@ -5913,14 +5913,14 @@ bool ImGui::TreeNodeBehavior(ImGuiID id, ImGuiTreeNodeFlags flags, const char* l
         // Framed type
         RenderFrame(bb.Min, bb.Max, col, true, style.FrameRounding);
         RenderCollapseTriangle(bb.Min + padding + ImVec2(0.0f, text_base_offset_y), is_open, 1.0f, true);
-        if (g.LogEnabled)
+        if (g.LOGEnabled)
         {
             // NB: '##' is normally used to hide text (as a library-wide feature), so we need to specify the text range to make sure the ## aren't stripped out here.
-            const char log_prefix[] = "\n##";
-            const char log_suffix[] = "##";
-            LogRenderedText(text_pos, log_prefix, log_prefix+3);
+            const char LOG_prefix[] = "\n##";
+            const char LOG_suffix[] = "##";
+            LOGRenderedText(text_pos, LOG_prefix, LOG_prefix+3);
             RenderTextClipped(text_pos, bb.Max, label, label_end, &label_size);
-            LogRenderedText(text_pos, log_suffix+1, log_suffix+3);
+            LOGRenderedText(text_pos, LOG_suffix+1, LOG_suffix+3);
         }
         else
         {
@@ -5937,8 +5937,8 @@ bool ImGui::TreeNodeBehavior(ImGuiID id, ImGuiTreeNodeFlags flags, const char* l
             RenderBullet(bb.Min + ImVec2(text_offset_x * 0.5f, g.FontSize*0.50f + text_base_offset_y));
         else if (!(flags & ImGuiTreeNodeFlags_Leaf))
             RenderCollapseTriangle(bb.Min + ImVec2(padding.x, g.FontSize*0.15f + text_base_offset_y), is_open, 0.70f, false);
-        if (g.LogEnabled)
-            LogRenderedText(text_pos, ">");
+        if (g.LOGEnabled)
+            LOGRenderedText(text_pos, ">");
         RenderText(text_pos, label, label_end, false);
     }
 
@@ -6386,7 +6386,7 @@ bool ImGui::SliderBehavior(const ImRect& frame_bb, ImGuiID id, float* v, float v
     const float slider_usable_pos_min = (is_horizontal ? frame_bb.Min.x : frame_bb.Min.y) + grab_padding + grab_sz*0.5f;
     const float slider_usable_pos_max = (is_horizontal ? frame_bb.Max.x : frame_bb.Max.y) - grab_padding - grab_sz*0.5f;
 
-    // For logarithmic sliders that cross over sign boundary we want the exponential increase to be symmetric around 0.0f
+    // For LOGarithmic sliders that cross over sign boundary we want the exponential increase to be symmetric around 0.0f
     float linear_zero_pos = 0.0f;   // 0.0->1.0f
     if (v_min * v_max < 0.0f)
     {
@@ -6415,7 +6415,7 @@ bool ImGui::SliderBehavior(const ImRect& frame_bb, ImGuiID id, float* v, float v
             float new_value;
             if (is_non_linear)
             {
-                // Account for logarithmic scale on both sides of the zero
+                // Account for LOGarithmic scale on both sides of the zero
                 if (normalized_pos < linear_zero_pos)
                 {
                     // Negative: rescale to the negative range before powering
@@ -6491,7 +6491,7 @@ bool ImGui::SliderBehavior(const ImRect& frame_bb, ImGuiID id, float* v, float v
     return value_changed;
 }
 
-// Use power!=1.0 for logarithmic sliders.
+// Use power!=1.0 for LOGarithmic sliders.
 // Adjust display_format to decorate the value with a prefix or a suffix.
 //   "%.3f"         1.234
 //   "%5.2f secs"   01.23 secs
@@ -6756,7 +6756,7 @@ bool ImGui::DragBehavior(const ImRect& frame_bb, ImGuiID id, float* v, float v_s
                 float delta = (mouse_drag_delta.x - g.DragLastMouseDelta.x) * speed;
                 if (fabsf(power - 1.0f) > 0.001f)
                 {
-                    // Logarithmic curve on both side of 0.0
+                    // LOGarithmic curve on both side of 0.0
                     float v0_abs = v_cur >= 0.0f ? v_cur : -v_cur;
                     float v0_sign = v_cur >= 0.0f ? 1.0f : -1.0f;
                     float v1 = powf(v0_abs, 1.0f / power) + (delta * v0_sign);
@@ -7218,8 +7218,8 @@ bool ImGui::Checkbox(const char* label, bool* v)
         window->DrawList->AddRectFilled(check_bb.Min+ImVec2(pad,pad), check_bb.Max-ImVec2(pad,pad), GetColorU32(ImGuiCol_CheckMark), style.FrameRounding);
     }
 
-    if (g.LogEnabled)
-        LogRenderedText(text_bb.GetTL(), *v ? "[x]" : "[ ]");
+    if (g.LOGEnabled)
+        LOGRenderedText(text_bb.GetTL(), *v ? "[x]" : "[ ]");
     if (label_size.x > 0.0f)
         RenderText(text_bb.GetTL(), label);
 
@@ -7290,8 +7290,8 @@ bool ImGui::RadioButton(const char* label, bool active)
         window->DrawList->AddCircle(center, radius, GetColorU32(ImGuiCol_Border), 16);
     }
 
-    if (g.LogEnabled)
-        LogRenderedText(text_bb.GetTL(), active ? "(x)" : "( )");
+    if (g.LOGEnabled)
+        LOGRenderedText(text_bb.GetTL(), active ? "(x)" : "( )");
     if (label_size.x > 0.0f)
         RenderText(text_bb.GetTL(), label);
 
@@ -8123,9 +8123,9 @@ bool ImGui::InputTextEx(const char* label, char* buf, int buf_size, const ImVec2
     if (is_password)
         PopFont();
 
-    // Log as text
-    if (g.LogEnabled && !is_password)
-        LogRenderedText(render_pos, buf_display, NULL);
+    // LOG as text
+    if (g.LOGEnabled && !is_password)
+        LOGRenderedText(render_pos, buf_display, NULL);
 
     if (label_size.x > 0)
         RenderText(ImVec2(frame_bb.Max.x + style.ItemInnerSpacing.x, frame_bb.Min.y + style.FramePadding.y), label);
@@ -9067,8 +9067,8 @@ void ImGui::Separator()
     window->DrawList->AddLine(bb.Min, bb.Max, GetColorU32(ImGuiCol_Border));
 
     ImGuiContext& g = *GImGui;
-    if (g.LogEnabled)
-        LogText(IM_NEWLINE "--------------------------------");
+    if (g.LOGEnabled)
+        LOGText(IM_NEWLINE "--------------------------------");
 
     if (window->DC.ColumnsCount > 1)
     {
@@ -9114,14 +9114,14 @@ void ImGui::BeginGroup()
     group_data.BackupIndentX = window->DC.IndentX;
     group_data.BackupCurrentLineHeight = window->DC.CurrentLineHeight;
     group_data.BackupCurrentLineTextBaseOffset = window->DC.CurrentLineTextBaseOffset;
-    group_data.BackupLogLinePosY = window->DC.LogLinePosY;
+    group_data.BackupLOGLinePosY = window->DC.LOGLinePosY;
     group_data.AdvanceCursor = true;
 
     window->DC.GroupOffsetX = window->DC.CursorPos.x - window->Pos.x - window->DC.ColumnsOffsetX;
     window->DC.IndentX = window->DC.GroupOffsetX;
     window->DC.CursorMaxPos = window->DC.CursorPos;
     window->DC.CurrentLineHeight = 0.0f;
-    window->DC.LogLinePosY = window->DC.CursorPos.y - 9999.0f;
+    window->DC.LOGLinePosY = window->DC.CursorPos.y - 9999.0f;
 }
 
 void ImGui::EndGroup()
@@ -9143,7 +9143,7 @@ void ImGui::EndGroup()
     window->DC.CurrentLineTextBaseOffset = group_data.BackupCurrentLineTextBaseOffset;
     window->DC.IndentX = group_data.BackupIndentX;
     window->DC.GroupOffsetX = window->DC.IndentX;
-    window->DC.LogLinePosY = window->DC.CursorPos.y - 9999.0f;
+    window->DC.LOGLinePosY = window->DC.CursorPos.y - 9999.0f;
 
     if (group_data.AdvanceCursor)
     {

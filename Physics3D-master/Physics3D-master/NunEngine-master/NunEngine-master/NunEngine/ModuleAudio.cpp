@@ -1,6 +1,8 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleAudio.h"
+#include "ModuleEditor.h"
+
 
 #pragma comment( lib, "SDL_mixer/libx86/SDL2_mixer.lib" )
 
@@ -20,7 +22,7 @@ bool ModuleAudio::Init()
 
 	if(SDL_InitSubSystem(SDL_INIT_AUDIO) < 0)
 	{
-		LOG("SDL_INIT_AUDIO could not initialize! SDL_Error: %s\n", SDL_GetError());
+		LOG("SDL_INIT_AUDIO could not initialize! SDL_Error: %s\n");
 		ret = false;
 	}
 

@@ -15,8 +15,21 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
-	
+
+
+public:
+	void CreateCubeImmediateMode();
+	void CreateCubeVertexArray();
+	void CreateCubeDrawElements();
 
 public:
 	
+
+
+
+
+
+
+
+
 };

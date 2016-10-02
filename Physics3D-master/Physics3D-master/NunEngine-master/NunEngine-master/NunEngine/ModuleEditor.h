@@ -2,7 +2,7 @@
 #include "Module.h"
 #include "Globals.h"
 #include "Primitive.h"
-
+#include "Imgui\imgui.h"
 #include <vector>
 
 
@@ -19,12 +19,18 @@ public:
 
 	void AddFPS(float fps);
 
+	void DrawConsole();
+	void LogConsole(const char* text);
+
 public:
 	vector<float> fps_plot_values;
+	ImGuiTextBuffer consoleText;
+	bool ScrollToBottom = true;
 private:
 	bool demo = false;
 	bool configuration = false;
 	bool active = false;
-	
-
 };
+
+
+

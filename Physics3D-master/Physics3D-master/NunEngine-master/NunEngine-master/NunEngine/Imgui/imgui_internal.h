@@ -260,7 +260,7 @@ struct ImGuiGroupData
     float       BackupIndentX;
     float       BackupCurrentLineHeight;
     float       BackupCurrentLineTextBaseOffset;
-    float       BackupLogLinePosY;
+    float       BackupLOGLinePosY;
     bool        AdvanceCursor;
 };
 
@@ -423,12 +423,12 @@ struct ImGuiContext
     char*                   PrivateClipboard;                   // If no custom clipboard handler is defined
     ImVec2                  OsImePosRequest, OsImePosSet;       // Cursor position request & last passed to the OS Input Method Editor
 
-    // Logging
-    bool                    LogEnabled;
-    FILE*                   LogFile;                            // If != NULL log to stdout/ file
-    ImGuiTextBuffer*        LogClipboard;                       // Else log to clipboard. This is pointer so our GImGui static constructor doesn't call heap allocators.
-    int                     LogStartDepth;
-    int                     LogAutoExpandMaxDepth;
+    // LOGging
+    bool                    LOGEnabled;
+    FILE*                   LOGFile;                            // If != NULL LOG to stdout/ file
+    ImGuiTextBuffer*        LOGClipboard;                       // Else LOG to clipboard. This is pointer so our GImGui static constructor doesn't call heap allocators.
+    int                     LOGStartDepth;
+    int                     LOGAutoExpandMaxDepth;
 
     // Misc
     float                   FramerateSecPerFrame[120];          // calculate estimate of framerate for user
@@ -495,11 +495,11 @@ struct ImGuiContext
         MouseCursor = ImGuiMouseCursor_Arrow;
         memset(MouseCursorData, 0, sizeof(MouseCursorData));
 
-        LogEnabled = false;
-        LogFile = NULL;
-        LogClipboard = NULL;
-        LogStartDepth = 0;
-        LogAutoExpandMaxDepth = 2;
+        LOGEnabled = false;
+        LOGFile = NULL;
+        LOGClipboard = NULL;
+        LOGStartDepth = 0;
+        LOGAutoExpandMaxDepth = 2;
 
         memset(FramerateSecPerFrame, 0, sizeof(FramerateSecPerFrame));
         FramerateSecPerFrameIdx = 0;
@@ -521,7 +521,7 @@ struct IMGUI_API ImGuiDrawContext
     float                   CurrentLineTextBaseOffset;
     float                   PrevLineHeight;
     float                   PrevLineTextBaseOffset;
-    float                   LogLinePosY;
+    float                   LOGLinePosY;
     int                     TreeDepth;
     ImGuiID                 LastItemId;
     ImRect                  LastItemRect;
@@ -565,7 +565,7 @@ struct IMGUI_API ImGuiDrawContext
         CursorPos = CursorPosPrevLine = CursorStartPos = CursorMaxPos = ImVec2(0.0f, 0.0f);
         CurrentLineHeight = PrevLineHeight = 0.0f;
         CurrentLineTextBaseOffset = PrevLineTextBaseOffset = 0.0f;
-        LogLinePosY = -1.0f;
+        LOGLinePosY = -1.0f;
         TreeDepth = 0;
         LastItemId = 0;
         LastItemRect = ImRect(0.0f,0.0f,0.0f,0.0f);
@@ -698,7 +698,7 @@ namespace ImGui
     IMGUI_API void          ItemSize(const ImVec2& size, float text_offset_y = 0.0f);
     IMGUI_API void          ItemSize(const ImRect& bb, float text_offset_y = 0.0f);
     IMGUI_API bool          ItemAdd(const ImRect& bb, const ImGuiID* id);
-    IMGUI_API bool          IsClippedEx(const ImRect& bb, const ImGuiID* id, bool clip_even_when_logged);
+    IMGUI_API bool          IsClippedEx(const ImRect& bb, const ImGuiID* id, bool clip_even_when_LOGged);
     IMGUI_API bool          IsHovered(const ImRect& bb, ImGuiID id, bool flatten_childs = false);
     IMGUI_API bool          FocusableItemRegister(ImGuiWindow* window, bool is_active, bool tab_stop = true);      // Return true if focus is requested
     IMGUI_API void          FocusableItemUnregister(ImGuiWindow* window);
@@ -741,7 +741,7 @@ namespace ImGui
     IMGUI_API bool          InputScalarAsWidgetReplacement(const ImRect& aabb, const char* label, ImGuiDataType data_type, void* data_ptr, ImGuiID id, int decimal_precision);
 
     IMGUI_API bool          TreeNodeBehavior(ImGuiID id, ImGuiTreeNodeFlags flags, const char* label, const char* label_end = NULL);
-    IMGUI_API bool          TreeNodeBehaviorIsOpen(ImGuiID id, ImGuiTreeNodeFlags flags = 0);                     // Consume previous SetNextTreeNodeOpened() data, if any. May return true when logging
+    IMGUI_API bool          TreeNodeBehaviorIsOpen(ImGuiID id, ImGuiTreeNodeFlags flags = 0);                     // Consume previous SetNextTreeNodeOpened() data, if any. May return true when LOGging
     IMGUI_API void          TreePushRawID(ImGuiID id);
 
     IMGUI_API void          PlotEx(ImGuiPlotType plot_type, const char* label, float (*values_getter)(void* data, int idx), void* data, int values_count, int values_offset, const char* overlay_text, float scale_min, float scale_max, ImVec2 graph_size);

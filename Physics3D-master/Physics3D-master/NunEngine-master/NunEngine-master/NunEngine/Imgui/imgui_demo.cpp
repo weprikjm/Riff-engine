@@ -55,7 +55,7 @@
 #ifndef IMGUI_DISABLE_TEST_WINDOWS
 
 static void ShowExampleAppConsole(bool* p_open);
-static void ShowExampleAppLog(bool* p_open);
+static void ShowExampleAppLOG(bool* p_open);
 static void ShowExampleAppLayout(bool* p_open);
 static void ShowExampleAppPropertyEditor(bool* p_open);
 static void ShowExampleAppLongText(bool* p_open);
@@ -102,7 +102,7 @@ void ImGui::ShowTestWindow(bool* p_open)
     // Examples apps
     static bool show_app_main_menu_bar = false;
     static bool show_app_console = false;
-    static bool show_app_log = false;
+    static bool show_app_LOG = false;
     static bool show_app_layout = false;
     static bool show_app_property_editor = false;
     static bool show_app_long_text = false;
@@ -118,7 +118,7 @@ void ImGui::ShowTestWindow(bool* p_open)
 
     if (show_app_main_menu_bar) ShowExampleAppMainMenuBar();
     if (show_app_console) ShowExampleAppConsole(&show_app_console);
-    if (show_app_log) ShowExampleAppLog(&show_app_log);
+    if (show_app_LOG) ShowExampleAppLOG(&show_app_LOG);
     if (show_app_layout) ShowExampleAppLayout(&show_app_layout);
     if (show_app_property_editor) ShowExampleAppPropertyEditor(&show_app_property_editor);
     if (show_app_long_text) ShowExampleAppLongText(&show_app_long_text);
@@ -182,7 +182,7 @@ void ImGui::ShowTestWindow(bool* p_open)
         {
             ImGui::MenuItem("Main menu bar", NULL, &show_app_main_menu_bar);
             ImGui::MenuItem("Console", NULL, &show_app_console);
-            ImGui::MenuItem("Log", NULL, &show_app_log);
+            ImGui::MenuItem("LOG", NULL, &show_app_LOG);
             ImGui::MenuItem("Simple layout", NULL, &show_app_layout);
             ImGui::MenuItem("Property editor", NULL, &show_app_property_editor);
             ImGui::MenuItem("Long text display", NULL, &show_app_long_text);
@@ -226,10 +226,10 @@ void ImGui::ShowTestWindow(bool* p_open)
             ImGui::TreePop();
         }
 
-        if (ImGui::TreeNode("Logging"))
+        if (ImGui::TreeNode("LOGging"))
         {
-            ImGui::TextWrapped("The logging API redirects all text output so you can easily capture the content of a window or a block. Tree nodes can be automatically expanded. You can also call ImGui::LogText() to output directly to the log without a visual output.");
-            ImGui::LogButtons();
+            ImGui::TextWrapped("The LOGging API redirects all text output so you can easily capture the content of a window or a block. Tree nodes can be automatically expanded. You can also call ImGui::LOGText() to output directly to the LOG without a visual output.");
+            ImGui::LOGButtons();
             ImGui::TreePop();
         }
     }
@@ -490,7 +490,7 @@ void ImGui::ShowTestWindow(bool* p_open)
             ImGui::Text("Password input");
             static char bufpass[64] = "password123";
             ImGui::InputText("password", bufpass, 64, ImGuiInputTextFlags_Password | ImGuiInputTextFlags_CharsNoBlank);
-            ImGui::SameLine(); ShowHelpMarker("Display all characters as '*'.\nDisable clipboard cut and copy.\nDisable logging.\n");
+            ImGui::SameLine(); ShowHelpMarker("Display all characters as '*'.\nDisable clipboard cut and copy.\nDisable LOGging.\n");
             ImGui::InputText("password (clear)", bufpass, 64, ImGuiInputTextFlags_CharsNoBlank);
 
             ImGui::TreePop();
@@ -617,7 +617,7 @@ void ImGui::ShowTestWindow(bool* p_open)
 
             static float f1=0.123f, f2=0.0f;
             ImGui::SliderFloat("slider float", &f1, 0.0f, 1.0f, "ratio = %.3f");
-            ImGui::SliderFloat("slider log float", &f2, -10.0f, 10.0f, "%.4f", 3.0f);
+            ImGui::SliderFloat("slider LOG float", &f2, -10.0f, 10.0f, "%.4f", 3.0f);
             static float angle = 0.0f;
             ImGui::SliderAngle("slider angle", &angle);
         }
@@ -1657,18 +1657,18 @@ void ImGui::ShowStyleEditor(ImGuiStyle* ref)
         if (ImGui::Button("Copy Colors"))
         {
             if (output_dest == 0)
-                ImGui::LogToClipboard();
+                ImGui::LOGToClipboard();
             else
-                ImGui::LogToTTY();
-            ImGui::LogText("ImGuiStyle& style = ImGui::GetStyle();" IM_NEWLINE);
+                ImGui::LOGToTTY();
+            ImGui::LOGText("ImGuiStyle& style = ImGui::GetStyle();" IM_NEWLINE);
             for (int i = 0; i < ImGuiCol_COUNT; i++)
             {
                 const ImVec4& col = style.Colors[i];
                 const char* name = ImGui::GetStyleColName(i);
                 if (!output_only_modified || memcmp(&col, (ref ? &ref->Colors[i] : &default_style.Colors[i]), sizeof(ImVec4)) != 0)
-                    ImGui::LogText("style.Colors[ImGuiCol_%s]%*s= ImVec4(%.2ff, %.2ff, %.2ff, %.2ff);" IM_NEWLINE, name, 22 - (int)strlen(name), "", col.x, col.y, col.z, col.w);
+                    ImGui::LOGText("style.Colors[ImGuiCol_%s]%*s= ImVec4(%.2ff, %.2ff, %.2ff, %.2ff);" IM_NEWLINE, name, 22 - (int)strlen(name), "", col.x, col.y, col.z, col.w);
             }
-            ImGui::LogFinish();
+            ImGui::LOGFinish();
         }
         ImGui::SameLine(); ImGui::PushItemWidth(120); ImGui::Combo("##output_type", &output_dest, "To Clipboard\0To TTY"); ImGui::PopItemWidth();
         ImGui::SameLine(); ImGui::Checkbox("Only Modified Fields", &output_only_modified);
@@ -2032,18 +2032,18 @@ struct ExampleAppConsole
 
     ExampleAppConsole()
     {
-        ClearLog();
+        ClearLOG();
         memset(InputBuf, 0, sizeof(InputBuf));
         HistoryPos = -1;
         Commands.push_back("HELP");
         Commands.push_back("HISTORY");
         Commands.push_back("CLEAR");
         Commands.push_back("CLASSIFY");  // "classify" is here to provide an example of "C"+[tab] completing to "CL" and displaying matches.
-        AddLog("Welcome to ImGui!");
+        AddLOG("Welcome to ImGui!");
     }
     ~ExampleAppConsole()
     {
-        ClearLog();
+        ClearLOG();
         for (int i = 0; i < History.Size; i++)
             free(History[i]);
     }
@@ -2053,7 +2053,7 @@ struct ExampleAppConsole
     static int   Strnicmp(const char* str1, const char* str2, int n) { int d = 0; while (n > 0 && (d = toupper(*str2) - toupper(*str1)) == 0 && *str1) { str1++; str2++; n--; } return d; }
     static char* Strdup(const char *str)                             { size_t len = strlen(str) + 1; void* buff = malloc(len); return (char*)memcpy(buff, (const void*)str, len); }
 
-    void    ClearLog()
+    void    ClearLOG()
     {
         for (int i = 0; i < Items.Size; i++)
             free(Items[i]);
@@ -2061,7 +2061,7 @@ struct ExampleAppConsole
         ScrollToBottom = true;
     }
 
-    void    AddLog(const char* fmt, ...) IM_PRINTFARGS(2)
+    void    AddLOG(const char* fmt, ...) IM_PRINTFARGS(2)
     {
         char buf[1024];
         va_list args;
@@ -2085,11 +2085,11 @@ struct ExampleAppConsole
         ImGui::TextWrapped("This example implements a console with basic coloring, completion and history. A more elaborate implementation may want to store entries along with extra data such as timestamp, emitter, etc.");
         ImGui::TextWrapped("Enter 'HELP' for help, press TAB to use text completion.");
 
-        if (ImGui::SmallButton("Add Dummy Text")) { AddLog("%d some text", Items.Size); AddLog("some more text"); AddLog("display very important message here!"); } ImGui::SameLine();
-        if (ImGui::SmallButton("Add Dummy Error")) AddLog("[error] something went wrong"); ImGui::SameLine();
-        if (ImGui::SmallButton("Clear")) ClearLog(); ImGui::SameLine();
+        if (ImGui::SmallButton("Add Dummy Text")) { AddLOG("%d some text", Items.Size); AddLOG("some more text"); AddLOG("display very important message here!"); } ImGui::SameLine();
+        if (ImGui::SmallButton("Add Dummy Error")) AddLOG("[error] something went wrong"); ImGui::SameLine();
+        if (ImGui::SmallButton("Clear")) ClearLOG(); ImGui::SameLine();
         if (ImGui::SmallButton("Scroll to bottom")) ScrollToBottom = true;
-        //static float t = 0.0f; if (ImGui::GetTime() - t > 0.02f) { t = ImGui::GetTime(); AddLog("Spam %f", t); }
+        //static float t = 0.0f; if (ImGui::GetTime() - t > 0.02f) { t = ImGui::GetTime(); AddLOG("Spam %f", t); }
 
         ImGui::Separator();
 
@@ -2102,11 +2102,11 @@ struct ExampleAppConsole
         ImGui::BeginChild("ScrollingRegion", ImVec2(0,-ImGui::GetItemsLineHeightWithSpacing()), false, ImGuiWindowFlags_HorizontalScrollbar);
         if (ImGui::BeginPopupContextWindow())
         {
-            if (ImGui::Selectable("Clear")) ClearLog();
+            if (ImGui::Selectable("Clear")) ClearLOG();
             ImGui::EndPopup();
         }
 
-        // Display every line as a separate entry so we can change their color or add custom widgets. If you only want raw text you can use ImGui::TextUnformatted(log.begin(), log.end());
+        // Display every line as a separate entry so we can change their color or add custom widgets. If you only want raw text you can use ImGui::TextUnformatted(LOG.begin(), LOG.end());
         // NB- if you have thousands of entries this approach may be too inefficient and may require user-side clipping to only process visible items.
         // You can seek and display only the lines that are visible using the ImGuiListClipper helper, if your elements are evenly spaced and you have cheap random access to the elements.
         // To use the clipper we could replace the 'for (int i = 0; i < Items.Size; i++)' loop with:
@@ -2156,7 +2156,7 @@ struct ExampleAppConsole
 
     void    ExecCommand(const char* command_line)
     {
-        AddLog("# %s\n", command_line);
+        AddLOG("# %s\n", command_line);
 
         // Insert into history. First find match and delete it so it can be pushed to the back. This isn't trying to be smart or optimal.
         HistoryPos = -1;
@@ -2172,22 +2172,22 @@ struct ExampleAppConsole
         // Process command
         if (Stricmp(command_line, "CLEAR") == 0)
         {
-            ClearLog();
+            ClearLOG();
         }
         else if (Stricmp(command_line, "HELP") == 0)
         {
-            AddLog("Commands:");
+            AddLOG("Commands:");
             for (int i = 0; i < Commands.Size; i++)
-                AddLog("- %s", Commands[i]);
+                AddLOG("- %s", Commands[i]);
         }
         else if (Stricmp(command_line, "HISTORY") == 0)
         {
             for (int i = History.Size >= 10 ? History.Size - 10 : 0; i < History.Size; i++)
-                AddLog("%3d: %s\n", i, History[i]);
+                AddLOG("%3d: %s\n", i, History[i]);
         }
         else
         {
-            AddLog("Unknown command: '%s'\n", command_line);
+            AddLOG("Unknown command: '%s'\n", command_line);
         }
     }
 
@@ -2199,7 +2199,7 @@ struct ExampleAppConsole
 
     int     TextEditCallback(ImGuiTextEditCallbackData* data)
     {
-        //AddLog("cursor: %d, selection: %d-%d", data->CursorPos, data->SelectionStart, data->SelectionEnd);
+        //AddLOG("cursor: %d, selection: %d-%d", data->CursorPos, data->SelectionStart, data->SelectionEnd);
         switch (data->EventFlag)
         {
         case ImGuiInputTextFlags_CallbackCompletion:
@@ -2226,7 +2226,7 @@ struct ExampleAppConsole
                 if (candidates.Size == 0)
                 {
                     // No match
-                    AddLog("No match for \"%.*s\"!\n", (int)(word_end-word_start), word_start);
+                    AddLOG("No match for \"%.*s\"!\n", (int)(word_end-word_start), word_start);
                 }
                 else if (candidates.Size == 1)
                 {
@@ -2260,9 +2260,9 @@ struct ExampleAppConsole
                     }
 
                     // List matches
-                    AddLog("Possible matches:\n");
+                    AddLOG("Possible matches:\n");
                     for (int i = 0; i < candidates.Size; i++)
-                        AddLog("- %s\n", candidates[i]);
+                        AddLOG("- %s\n", candidates[i]);
                 }
 
                 break;
@@ -2304,10 +2304,10 @@ static void ShowExampleAppConsole(bool* p_open)
 }
 
 // Usage:
-//  static ExampleAppLog my_log;
-//  my_log.AddLog("Hello %d world\n", 123);
-//  my_log.Draw("title");
-struct ExampleAppLog
+//  static ExampleAppLOG my_LOG;
+//  my_LOG.AddLOG("Hello %d world\n", 123);
+//  my_LOG.Draw("title");
+struct ExampleAppLOG
 {
     ImGuiTextBuffer     Buf;
     ImGuiTextFilter     Filter;
@@ -2316,7 +2316,7 @@ struct ExampleAppLog
 
     void    Clear()     { Buf.clear(); LineOffsets.clear(); }
 
-    void    AddLog(const char* fmt, ...) IM_PRINTFARGS(2)
+    void    AddLOG(const char* fmt, ...) IM_PRINTFARGS(2)
     {
         int old_size = Buf.size();
         va_list args;
@@ -2340,7 +2340,7 @@ struct ExampleAppLog
         Filter.Draw("Filter", -100.0f);
         ImGui::Separator();
         ImGui::BeginChild("scrolling", ImVec2(0,0), false, ImGuiWindowFlags_HorizontalScrollbar);
-        if (copy) ImGui::LogToClipboard();
+        if (copy) ImGui::LOGToClipboard();
 
         if (Filter.IsActive())
         {
@@ -2367,21 +2367,21 @@ struct ExampleAppLog
     }
 };
 
-static void ShowExampleAppLog(bool* p_open)
+static void ShowExampleAppLOG(bool* p_open)
 {
-    static ExampleAppLog log;
+    static ExampleAppLOG LOG;
 
     // Demo fill
     static float last_time = -1.0f;
     float time = ImGui::GetTime();
     if (time - last_time >= 0.3f)
     {
-        const char* random_words[] = { "system", "info", "warning", "error", "fatal", "notice", "log" };
-        log.AddLog("[%s] Hello, time is %.1f, rand() %d\n", random_words[rand() % IM_ARRAYSIZE(random_words)], time, (int)rand());
+        const char* random_words[] = { "system", "info", "warning", "error", "fatal", "notice", "LOG" };
+        LOG.AddLOG("[%s] Hello, time is %.1f, rand() %d\n", random_words[rand() % IM_ARRAYSIZE(random_words)], time, (int)rand());
         last_time = time;
     }
 
-    log.Draw("Example: Log", p_open);
+    LOG.Draw("Example: LOG", p_open);
 }
 
 static void ShowExampleAppLayout(bool* p_open)
@@ -2511,25 +2511,25 @@ static void ShowExampleAppLongText(bool* p_open)
     }
 
     static int test_type = 0;
-    static ImGuiTextBuffer log;
+    static ImGuiTextBuffer LOG;
     static int lines = 0;
     ImGui::Text("Printing unusually long amount of text.");
     ImGui::Combo("Test type", &test_type, "Single call to TextUnformatted()\0Multiple calls to Text(), clipped manually\0Multiple calls to Text(), not clipped\0");
-    ImGui::Text("Buffer contents: %d lines, %d bytes", lines, log.size());
-    if (ImGui::Button("Clear")) { log.clear(); lines = 0; }
+    ImGui::Text("Buffer contents: %d lines, %d bytes", lines, LOG.size());
+    if (ImGui::Button("Clear")) { LOG.clear(); lines = 0; }
     ImGui::SameLine();
     if (ImGui::Button("Add 1000 lines"))
     {
         for (int i = 0; i < 1000; i++)
-            log.append("%i The quick brown fox jumps over the lazy dog\n", lines+i);
+            LOG.append("%i The quick brown fox jumps over the lazy dog\n", lines+i);
         lines += 1000;
     }
-    ImGui::BeginChild("Log");
+    ImGui::BeginChild("LOG");
     switch (test_type)
     {
     case 0:
         // Single call to TextUnformatted() with a big buffer
-        ImGui::TextUnformatted(log.begin(), log.end());
+        ImGui::TextUnformatted(LOG.begin(), LOG.end());
         break;
     case 1:
         {

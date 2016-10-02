@@ -4,6 +4,7 @@
 #include "PhysBody3D.h"
 #include "PhysVehicle3D.h"
 #include "Primitive.h"
+#include "ModuleEditor.h"
 
 #ifdef _DEBUG
 	#pragma comment (lib, "Bullet/libx86/BulletDynamics_debug.lib")
@@ -39,7 +40,7 @@ ModulePhysics3D::~ModulePhysics3D()
 // Render not available yet----------------------------------
 bool ModulePhysics3D::Init()
 {
-	LOG("Creating 3D Physics simulation");
+	App->editor->LogConsole("Creating 3D Physics simulation\n");
 	bool ret = true;
 
 	return ret;
@@ -48,7 +49,7 @@ bool ModulePhysics3D::Init()
 // ---------------------------------------------------------
 bool ModulePhysics3D::Start()
 {
-	LOG("Creating Physics environment");
+	App->editor->LogConsole("Creating Physics environment\n");
 
 	world = new btDiscreteDynamicsWorld(dispatcher, broad_phase, solver, collision_conf);
 	world->setDebugDrawer(debug_draw);
@@ -151,7 +152,7 @@ update_status ModulePhysics3D::PostUpdate(float dt)
 // Called before quitting
 bool ModulePhysics3D::CleanUp()
 {
-	LOG("Destroying 3D Physics simulation");
+	App->editor->LogConsole("Destroying 3D Physics simulation\n");
 
 	// Remove from the world all collision bodies
 	for(int i = world->getNumCollisionObjects() - 1; i >= 0; i--)
