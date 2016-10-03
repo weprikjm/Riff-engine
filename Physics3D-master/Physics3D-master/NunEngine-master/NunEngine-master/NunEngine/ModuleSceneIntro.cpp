@@ -40,6 +40,17 @@ bool ModuleSceneIntro::CleanUp()
 	return true;
 }
 
+bool ModuleSceneIntro::DrawMesh(riffMesh mesh)
+{
+	bool ret = true;
+
+
+	//mesh.
+
+
+	return ret;
+}
+
 // Update
 update_status ModuleSceneIntro::Update(float dt)
 {

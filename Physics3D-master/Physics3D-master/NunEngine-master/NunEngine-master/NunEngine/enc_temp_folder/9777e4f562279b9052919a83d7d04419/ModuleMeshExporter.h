@@ -68,6 +68,10 @@ public:
 	bool CleanUp();
 
 
+
+
+
+
 	std::vector<riffMesh*> meshes;
 	
 };

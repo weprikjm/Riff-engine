@@ -52,6 +52,9 @@ bool ModuleMeshExporter::Init()
 	LoadMesh("Assets/warrior.FBX");
 
 
+
+
+
 	return true;
 }
 
