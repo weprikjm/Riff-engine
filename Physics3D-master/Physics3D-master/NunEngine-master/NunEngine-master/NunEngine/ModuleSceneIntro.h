@@ -14,7 +14,7 @@ public:
 	bool Start();
 	update_status Update(float dt);
 	bool CleanUp();
-	bool DrawMesh(riffMesh mesh);
+	bool DrawMesh(riffMesh* mesh);
 
 
 public:
