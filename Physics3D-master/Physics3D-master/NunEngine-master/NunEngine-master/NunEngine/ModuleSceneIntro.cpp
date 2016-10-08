@@ -28,19 +28,33 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
-	glGenBuffers(1, (GLuint*) &(App->importer->meshes[0]->id_vertices));
 
-	glBindBuffer(GL_ARRAY_BUFFER, App->importer->meshes[0]->id_vertices);
+	for(int i = 0; i < App->importer->meshes.size(); i++)
+	{
+		
+		glGenBuffers(1, (GLuint*) &(App->importer->meshes[i]->id_vertices));
 
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float)*App->importer->meshes[0]->numVertex * 3, App->importer->meshes[0]->vertices, GL_STATIC_DRAW);
+		glBindBuffer(GL_ARRAY_BUFFER, App->importer->meshes[i]->id_vertices);
+
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float)*App->importer->meshes[i]->numVertex * 3, App->importer->meshes[i]->vertices, GL_STATIC_DRAW);
+
+		glGenBuffers(1, (GLuint*) &(App->importer->meshes[i]->id_indices));
+
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, App->importer->meshes[i]->id_indices);
+
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint)*App->importer->meshes[i]->numFaces, App->importer->meshes[i]->indices, GL_STATIC_DRAW);
+
+	
+		glEnableClientState(GL_NORMAL_ARRAY);
 
 
+		glGenBuffers(1, (GLuint*) &(App->importer->meshes[i]->id_normals));
+		glBindBuffer(GL_ARRAY_BUFFER, App->importer->meshes[i]->id_normals);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float) *App->importer->meshes[i]->numVertex * 3, App->importer->meshes[i]->normals, GL_STATIC_DRAW);
+		glNormalPointer(GL_FLOAT, 0, NULL);
+	}
 
-	glGenBuffers(1, (GLuint*) &(App->importer->meshes[0]->id_indices));
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, App->importer->meshes[0]->id_indices);
-
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint)*App->importer->meshes[0]->numFaces, App->importer->meshes[0]->indices, GL_STATIC_DRAW);
+	
 	
 	return ret;
 }
@@ -57,14 +71,25 @@ bool ModuleSceneIntro::DrawMesh(riffMesh* mesh)
 {
 	bool ret = true;
 	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_NORMAL_ARRAY);
+
+
 
 	glBindBuffer(GL_ARRAY_BUFFER, mesh->id_vertices);
 	glVertexPointer(3, GL_FLOAT, 0, NULL);
 
+	glBindBuffer(GL_ARRAY_BUFFER, mesh->id_normals);
+	glNormalPointer(GL_FLOAT, 0, NULL);
+
+	glBindBuffer(GL_ARRAY_BUFFER, mesh->id_indices);
+
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->id_indices);
 	glDrawElements(GL_TRIANGLES, mesh->numFaces, GL_UNSIGNED_INT, NULL);
-	
+
+
+
 	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_NORMAL_ARRAY);
 	
 	return ret;
 }
@@ -72,12 +97,16 @@ bool ModuleSceneIntro::DrawMesh(riffMesh* mesh)
 // Update
 update_status ModuleSceneIntro::Update(float dt)
 {
-		
-	DrawMesh(App->importer->meshes[0]);	
-	/*glTranslatef(2,2,0);
-	CreateCubeVertexArray();
-	glTranslatef(2, 0, 0);
-	CreateCubeDrawElements();*/
+	for(int i = 0; i < App->importer->meshes.size(); i++)
+	{
+		DrawMesh(App->importer->meshes[i]);	
+	}
+
+
+	CreateCubeImmediateMode();
+
+
+
 	return UPDATE_CONTINUE;
 }
 

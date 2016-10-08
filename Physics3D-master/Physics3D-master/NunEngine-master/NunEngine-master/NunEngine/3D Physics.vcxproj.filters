@@ -31,6 +31,9 @@
     <Filter Include="Sources\Other">
       <UniqueIdentifier>{8afdd527-2745-45ba-8388-c91d1aa8f948}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\GameObject">
+      <UniqueIdentifier>{a32c1a2b-70a8-4009-a47b-c2ff66946533}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -116,6 +119,15 @@
     </ClInclude>
     <ClInclude Include="ModuleMeshExporter.h">
       <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Sources\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Sources\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentTransform.h">
+      <Filter>Sources\GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

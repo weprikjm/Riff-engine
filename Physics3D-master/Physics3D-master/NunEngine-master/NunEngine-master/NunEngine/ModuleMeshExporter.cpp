@@ -1,6 +1,15 @@
 
 #include "ModuleMeshExporter.h"
 
+#pragma comment (lib, "Devil/libx86/DevIL.lib")
+#pragma comment (lib, "Devil/libx86/ILU.lib")
+#pragma comment (lib, "Devil/libx86/ILUT.lib")
+
+#include "Devil/include/il.h"
+#include "Devil/include/ilu.h"
+#include "Devil/include/ilut.h"
+
+
 using namespace std;
 
 ModuleMeshExporter::ModuleMeshExporter(Application* app, bool start_enabled) : Module(app, start_enabled)
@@ -21,7 +30,7 @@ void ModuleMeshExporter::LoadMesh(const char* path)
 
 	const aiScene* scene = aiImportFile(path, 0);
 	
-	//Load Vertices
+	
 	if (scene->HasMeshes())
 	{
 		for (int i = 0; i < scene->mNumMeshes; i++)
