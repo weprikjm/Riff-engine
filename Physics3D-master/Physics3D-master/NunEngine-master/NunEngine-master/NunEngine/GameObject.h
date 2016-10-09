@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include "Component.h"
-
+#include "ComponentMesh.h"
 
 
 
@@ -14,6 +14,8 @@ public:
 		AddComponent(type);
 	}
 	Component* AddComponent(typeComponent type);
+
+	ComponentMesh* GetComponentMesh();
 
 	std::vector<Component*> components;
 

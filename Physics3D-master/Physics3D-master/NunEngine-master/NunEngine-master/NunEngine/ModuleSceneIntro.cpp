@@ -6,8 +6,8 @@
 #include "ModuleMeshExporter.h"
 #include "Glew\include\glew.h"
 #include "Imgui\imgui.h"
-
-
+#include "ComponentMesh.h"
+#include "GameObject.h"
 
 #define CHECKERS_HEIGHT 1
 #define CHECKERS_WIDTH 1
@@ -56,9 +56,14 @@ bool ModuleSceneIntro::Start()
 	
     GameObject* go = oFactory.CreateGameObject(COMPONENTTRANSFORM,"player");
 
-	oFactory.allSceneObjects.push_back(go);
+	GameObject* go2 = oFactory.CreateGameObject(COMPONENTMESH, "enemy");
 
-	oFactory.allSceneObjects[0];
+	oFactory.allSceneObjects.push_back(go);
+	oFactory.allSceneObjects.push_back(go2);
+
+	const ComponentMesh* comp = oFactory.allSceneObjects[1]->GetComponentMesh();
+	
+		
 
 	return ret;
 }

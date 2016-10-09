@@ -212,6 +212,7 @@
     <ClCompile Include="GameObjectFactory.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="ComponentMesh.cpp" />
+    <ClCompile Include="Component.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ListIterator.snippet">

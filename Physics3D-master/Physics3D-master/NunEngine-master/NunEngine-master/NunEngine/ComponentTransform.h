@@ -8,6 +8,9 @@ class ComponentTransform : public Component
 
 public:
 
+	ComponentTransform(typeComponent type) : Component(type){}
+
+
 	typeComponent type = COMPONENTTRANSFORM;
 	float x;
 	float y;

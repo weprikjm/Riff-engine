@@ -41,8 +41,6 @@ void ModuleMeshExporter::LoadMesh(const char* path)
 		//UnloadMesh
 		aiReleaseImport(scene);
 	}
-	
-	
 }
 
 update_status ModuleMeshExporter::Update(float dt)

@@ -14,8 +14,8 @@ class Component
 {
 public:
 	
-	Component():IsEnabled(true) {}
-
+	Component(typeComponent type):IsEnabled(true), type(type) {}
+	typeComponent GetType();
 
 public:
 

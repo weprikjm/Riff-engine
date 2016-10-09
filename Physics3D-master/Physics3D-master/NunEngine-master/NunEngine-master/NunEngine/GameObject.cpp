@@ -11,14 +11,16 @@ Component * GameObject::AddComponent(typeComponent type)
 
 	if (type == COMPONENTTRANSFORM) 
 	{
-		component = new ComponentTransform();
+		component = new ComponentTransform(COMPONENTTRANSFORM);
 		components.push_back(component);
 		return component;
 	}
+
 	if (type == COMPONENTMESH) 
 	{
 		component = new ComponentMesh();
 		components.push_back(component);
+		return component;
 	}
 
 	else
@@ -28,4 +30,16 @@ Component * GameObject::AddComponent(typeComponent type)
 
 
 	return nullptr;
+}
+ ComponentMesh* GameObject::GetComponentMesh()
+{
+	for(int i = 0; i < components.size(); i++)
+	{
+		if (components[i]->type == COMPONENTMESH) 
+		{
+			return (ComponentMesh*)components[i];
+		}
+	}
+		return NULL;
+	
 }
