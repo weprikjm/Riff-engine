@@ -53,9 +53,13 @@ bool ModuleSceneIntro::Start()
 		glBufferData(GL_ARRAY_BUFFER, sizeof(float) *App->importer->meshes[i]->numVertex * 3, App->importer->meshes[i]->normals, GL_STATIC_DRAW);
 		glNormalPointer(GL_FLOAT, 0, NULL);
 	}
+	
+    GameObject* go = oFactory.CreateGameObject(COMPONENTTRANSFORM,"player");
 
-	
-	
+	oFactory.allSceneObjects.push_back(go);
+
+	oFactory.allSceneObjects[0];
+
 	return ret;
 }
 

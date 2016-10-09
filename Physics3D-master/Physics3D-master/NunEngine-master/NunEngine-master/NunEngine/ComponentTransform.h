@@ -6,9 +6,12 @@
 class ComponentTransform : public Component 
 {
 
+public:
 
-
-
+	typeComponent type = COMPONENTTRANSFORM;
+	float x;
+	float y;
+	float z;
 };
 
 

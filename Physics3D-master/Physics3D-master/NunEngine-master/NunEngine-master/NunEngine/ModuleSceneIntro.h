@@ -1,9 +1,11 @@
-#pragma once
+#ifndef __MODULESCENEINTRO_H__
+#define __MODULESCENEINTRO_H__
+
 #include "Module.h"
 #include "Globals.h"
 #include "Primitive.h"
 #include "ModuleMeshExporter.h"
-
+#include "GameObjectFactory.h"
 
 class ModuleSceneIntro : public Module
 {
@@ -22,4 +24,7 @@ public:
 	void CreateCubeVertexArray();
 	void CreateCubeDrawElements();
 
+public:
+	GameObjectFactory oFactory;
 };
+#endif

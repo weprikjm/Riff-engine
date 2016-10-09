@@ -14,7 +14,8 @@
 #include "ModulePhysics3D.h"
 #include "ModuleEditor.h"
 #include "ModuleMeshExporter.h"
-
+#include "GameObjectFactory.h"
+#include "ComponentMesh.h"
 using namespace std; 
 
 class Application

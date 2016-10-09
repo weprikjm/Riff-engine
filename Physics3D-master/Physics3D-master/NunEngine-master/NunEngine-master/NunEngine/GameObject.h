@@ -1,13 +1,19 @@
 #pragma once
 #include <vector>
 #include "Component.h"
+
+
+
+
+
 class GameObject
 {
 public:
-	GameObject(const char* name) 
+	GameObject(const char* name,typeComponent type) 
 	{
-		strcpy(this->name,name);
+		AddComponent(type);
 	}
+	Component* AddComponent(typeComponent type);
 
 	std::vector<Component*> components;
 

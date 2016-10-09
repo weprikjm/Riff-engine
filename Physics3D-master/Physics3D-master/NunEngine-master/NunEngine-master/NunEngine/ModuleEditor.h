@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __MODULEEDITOR_H__
+#define __MODULEEDITOR_H__
+
 #include "Module.h"
 #include "Globals.h"
 #include "Primitive.h"
@@ -32,5 +34,5 @@ private:
 	bool active = false;
 };
 
-
+#endif
 

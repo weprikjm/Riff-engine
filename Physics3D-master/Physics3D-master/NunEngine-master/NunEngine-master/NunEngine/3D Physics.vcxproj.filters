@@ -129,6 +129,12 @@
     <ClInclude Include="ComponentTransform.h">
       <Filter>Sources\GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="GameObjectFactory.h">
+      <Filter>Sources\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentMesh.h">
+      <Filter>Sources\GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -203,6 +209,9 @@
     <ClCompile Include="ModuleMeshExporter.cpp">
       <Filter>Sources\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjectFactory.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="ComponentMesh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ListIterator.snippet">

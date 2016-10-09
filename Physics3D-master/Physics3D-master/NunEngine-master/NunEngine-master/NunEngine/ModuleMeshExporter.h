@@ -52,13 +52,6 @@ struct riffMesh
 				normals = new float[m->mNumVertices * 3];
 				memcpy(normals, m->mNormals, sizeof(float) * m->mNumVertices * 3);
 			}
-
-			
-
-
-
-
-			
 		}
 
 		numFaces = m->mNumFaces;
