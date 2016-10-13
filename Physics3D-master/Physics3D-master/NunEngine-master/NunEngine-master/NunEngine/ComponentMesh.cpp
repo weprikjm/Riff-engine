@@ -6,5 +6,10 @@
 
 void ComponentMesh::AddMesh(const char* meshPath, ModuleMeshExporter importer)
 {
-	importer.LoadMesh(meshPath);
+	mesh = importer.LoadMesh(meshPath, mesh);
+}
+
+void ComponentMesh::AddMesh(riffMesh* mesh) 
+{
+	this->mesh = mesh;
 }

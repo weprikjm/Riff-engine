@@ -69,6 +69,11 @@ struct riffMesh
 	
 	uint numFaces;
 	uint numVertex;
+
+
+	int mesh_id = 0;
+
+
 };
 
 
@@ -82,7 +87,7 @@ public:
 	ModuleMeshExporter(Application* app, bool start_enabled = true);
 
 
-	void LoadMesh(const char* path);
+	riffMesh* LoadMesh(const char* path, riffMesh* mesh);
 
 
 	update_status Update(float dt);

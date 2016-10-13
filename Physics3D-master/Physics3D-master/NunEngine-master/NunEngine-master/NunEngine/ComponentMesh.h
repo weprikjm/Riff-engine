@@ -12,7 +12,7 @@ public:
 	ComponentMesh() : Component(COMPONENTMESH) {}
 
 	void AddMesh(const char* meshPath, ModuleMeshExporter importer);
-
+	void AddMesh(riffMesh* mesh);
 	riffMesh* mesh;
 };
 #endif

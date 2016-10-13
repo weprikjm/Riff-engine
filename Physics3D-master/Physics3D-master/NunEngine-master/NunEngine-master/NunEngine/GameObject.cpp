@@ -31,15 +31,16 @@ Component * GameObject::AddComponent(typeComponent type)
 
 	return nullptr;
 }
- ComponentMesh* GameObject::GetComponentMesh()
+ bool GameObject::FindComponent(typeComponent type, Component* comp)
 {
 	for(int i = 0; i < components.size(); i++)
 	{
-		if (components[i]->type == COMPONENTMESH) 
+		if (components[i]->type == type) 
 		{
-			return (ComponentMesh*)components[i];
+				 comp = components[i];
+				 return true;
 		}
 	}
-		return NULL;
+		return false;
 	
 }

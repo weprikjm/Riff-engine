@@ -14,6 +14,8 @@ public:
 
 
 	std::vector<GameObject*> allSceneObjects;
+
+	GameObject* root;
 };
 
 

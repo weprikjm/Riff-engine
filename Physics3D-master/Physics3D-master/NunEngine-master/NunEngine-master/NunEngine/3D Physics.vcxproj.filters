@@ -218,5 +218,6 @@
     <None Include="ListIterator.snippet">
       <Filter>Sources\Snippets</Filter>
     </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

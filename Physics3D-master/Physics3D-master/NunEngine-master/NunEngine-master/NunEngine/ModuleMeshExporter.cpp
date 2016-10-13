@@ -1,5 +1,9 @@
 
 #include "ModuleMeshExporter.h"
+#include "GameObject.h"
+#include "Globals.h"
+#include "Application.h"
+#include "Component.h"
 
 #pragma comment (lib, "Devil/libx86/DevIL.lib")
 #pragma comment (lib, "Devil/libx86/ILU.lib")
@@ -20,8 +24,11 @@ ModuleMeshExporter::ModuleMeshExporter(Application* app, bool start_enabled) : M
 
 
 
-void ModuleMeshExporter::LoadMesh(const char* path)
+riffMesh* ModuleMeshExporter::LoadMesh(const char* path,riffMesh* mesh)
 {
+
+	static int id_Mesh = 0;
+
 	if (!path)
 	{
 
@@ -30,17 +37,24 @@ void ModuleMeshExporter::LoadMesh(const char* path)
 
 	const aiScene* scene = aiImportFile(path, 0);
 	
-	
+	riffMesh* tmpMesh;
+
 	if (scene->HasMeshes())
 	{
 		for (int i = 0; i < scene->mNumMeshes; i++)
 		{
-			meshes.push_back(new riffMesh(scene->mMeshes[0]));
+			tmpMesh = new riffMesh(scene->mMeshes[i]);
+			meshes.push_back(tmpMesh);
+			App->scene_intro->oFactory.allSceneObjects.push_back(new GameObject("object1", COMPONENTMESH));
+			ComponentMesh tmp;
+			App->scene_intro->oFactory.allSceneObjects[i]->FindComponent(COMPONENTMESH, &tmp);
+			tmp.AddMesh(tmpMesh);
 		}
 
 		//UnloadMesh
 		aiReleaseImport(scene);
 	}
+	return tmpMesh;
 }
 
 update_status ModuleMeshExporter::Update(float dt)
@@ -55,8 +69,8 @@ bool ModuleMeshExporter::Init()
 	stream = aiGetPredefinedLogStream(aiDefaultLogStream_DEBUGGER, nullptr); 
 	aiAttachLogStream(&stream);
 
-
-	LoadMesh("Assets/warrior.FBX");
+	riffMesh* mesh = nullptr;
+	LoadMesh("Assets/Streetenvironment_V01.FBX",mesh);
 
 
 	return true;

@@ -52,6 +52,7 @@ bool ModuleSceneIntro::Start()
 		glBindBuffer(GL_ARRAY_BUFFER, App->importer->meshes[i]->id_normals);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(float) *App->importer->meshes[i]->numVertex * 3, App->importer->meshes[i]->normals, GL_STATIC_DRAW);
 		glNormalPointer(GL_FLOAT, 0, NULL);
+
 	}
 	
     GameObject* go = oFactory.CreateGameObject(COMPONENTTRANSFORM,"player");
@@ -61,10 +62,8 @@ bool ModuleSceneIntro::Start()
 	oFactory.allSceneObjects.push_back(go);
 	oFactory.allSceneObjects.push_back(go2);
 
-	const ComponentMesh* comp = oFactory.allSceneObjects[1]->GetComponentMesh();
+	GameObject* go3 = oFactory.allSceneObjects[0];
 	
-		
-
 	return ret;
 }
 
@@ -72,7 +71,6 @@ bool ModuleSceneIntro::Start()
 bool ModuleSceneIntro::CleanUp()
 {
 	LOG("Unloading Intro scene");
-	
 	return true;
 }
 

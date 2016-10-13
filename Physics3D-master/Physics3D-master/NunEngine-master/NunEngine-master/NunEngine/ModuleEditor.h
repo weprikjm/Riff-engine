@@ -6,7 +6,7 @@
 #include "Primitive.h"
 #include "Imgui\imgui.h"
 #include <vector>
-
+#include "GameObject.h"
 
 
 class ModuleEditor : public Module
@@ -22,6 +22,7 @@ public:
 	void AddFPS(float fps);
 
 	void DrawConsole();
+	void DrawGOTree();
 	void LogConsole(const char* text);
 
 public:
@@ -32,6 +33,8 @@ private:
 	bool demo = false;
 	bool configuration = false;
 	bool active = false;
+	bool isTreeGoActive = true;
+	GameObject* dialogActive = nullptr;
 };
 
 #endif

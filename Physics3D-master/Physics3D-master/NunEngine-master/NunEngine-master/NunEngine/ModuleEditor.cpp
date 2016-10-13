@@ -8,8 +8,10 @@
 #include <gl/GL.h>
 #include <gl/GLU.h>
 #include <vector>
-
+#include "Module.h"
 #include "Imgui\imgui.h"
+
+#include "GameObjectFactory.h"
 
 #pragma comment (lib, "Glew/libx86/glew32.lib")
 
@@ -176,7 +178,7 @@ update_status ModuleEditor::Update(float dt)
 
 	DrawConsole();
 
-
+	DrawGOTree();
 
 
 	return UPDATE_CONTINUE;
@@ -221,4 +223,28 @@ void ModuleEditor::DrawConsole()
 
 
 	ImGui::End();
+}
+
+
+void ModuleEditor::DrawGOTree() 
+{
+	ImGui::SetNextWindowContentWidth(300.0f);
+	ImGui::Begin("Game Objects Tree", &isTreeGoActive, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove);
+	
+	
+	
+	for (int i = 0; i < App->scene_intro->oFactory.allSceneObjects.size(); i++)
+	{
+		if(ImGui::TreeNodeEx(App->scene_intro->oFactory.allSceneObjects[i]->name))
+		{
+			//Clicked on the hierarchy
+			if (ImGui::IsItemClicked(0)) 
+			{
+				dialogActive = App->scene_intro->oFactory.allSceneObjects[i];
+				int i = 0;
+			}
+		}
+	}
+	ImGui::End();
+
 }
