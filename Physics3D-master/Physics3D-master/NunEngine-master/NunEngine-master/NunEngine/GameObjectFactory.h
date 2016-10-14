@@ -7,12 +7,15 @@
 class GameObjectFactory
 {
 public:
-	GameObjectFactory(){}
+	GameObjectFactory()
+	{
+		
+	}
 
 	GameObject* CreateGameObject(typeComponent type, const char* name);
 
 
-
+	GameObject* FindId(int num);
 	std::vector<GameObject*> allSceneObjects;
 
 	GameObject* root;

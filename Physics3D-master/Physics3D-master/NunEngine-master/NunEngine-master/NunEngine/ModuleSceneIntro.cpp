@@ -63,7 +63,9 @@ bool ModuleSceneIntro::Start()
 	oFactory.allSceneObjects.push_back(go2);
 
 	GameObject* go3 = oFactory.allSceneObjects[0];
-	
+	go3->AddChild(go2);
+
+
 	return ret;
 }
 

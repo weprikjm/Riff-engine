@@ -50,7 +50,6 @@ riffMesh* ModuleMeshExporter::LoadMesh(const char* path,riffMesh* mesh)
 			App->scene_intro->oFactory.allSceneObjects[i]->FindComponent(COMPONENTMESH, &tmp);
 			
 			tmp.AddMesh(tmpMesh);
-
 		}
 
 		//UnloadMesh

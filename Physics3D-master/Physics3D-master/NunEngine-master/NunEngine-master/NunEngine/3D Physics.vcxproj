@@ -113,6 +113,7 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ComponentMesh.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameObjectConfig.cpp" />
     <ClCompile Include="GameObjectFactory.cpp" />
     <ClCompile Include="glmath.cpp" />
     <ClCompile Include="Imgui\imgui.cpp" />

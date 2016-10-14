@@ -24,3 +24,15 @@ GameObject* GameObjectFactory::CreateGameObject(typeComponent type, const char* 
 		}
 	
 }
+
+
+GameObject* GameObjectFactory::FindId(int num) 
+{
+	for (int i = 0; i < allSceneObjects.size(); i++) 
+	{
+		if (allSceneObjects[i]->GetID() == num)
+		{
+			return allSceneObjects[i];
+		}
+	}
+}

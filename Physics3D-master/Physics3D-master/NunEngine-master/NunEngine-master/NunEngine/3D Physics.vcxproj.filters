@@ -209,10 +209,21 @@
     <ClCompile Include="ModuleMeshExporter.cpp">
       <Filter>Sources\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjectFactory.cpp" />
-    <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="ComponentMesh.cpp" />
-    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="GameObjectFactory.cpp">
+      <Filter>Sources\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Sources\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentMesh.cpp">
+      <Filter>Sources\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Sources\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectConfig.cpp">
+      <Filter>Sources\GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ListIterator.snippet">

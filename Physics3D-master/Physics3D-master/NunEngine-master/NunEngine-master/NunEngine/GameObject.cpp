@@ -44,3 +44,16 @@ Component * GameObject::AddComponent(typeComponent type)
 		return false;
 	
 }
+
+
+
+ GameObject* GameObject::AddChild(GameObject* go) 
+ {
+	 children.push_back(go);
+	 return go;
+ }
+
+ int GameObject::GetID() 
+ {
+	 return id;
+ }

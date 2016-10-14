@@ -38,7 +38,8 @@ bool ModuleEditor::Start()
 	{
 		fps_plot_values.push_back(0);
 	}
-	
+
+
 	return ret;
 }
 
@@ -243,10 +244,15 @@ void ModuleEditor::DrawGOTree()
 				dialogActive = App->scene_intro->oFactory.allSceneObjects[i];
 				int i = 0;
 			}
-			if (ImGui::TreeNode("hello"))
-			{
-				ImGui::TreePop();
-			}
+
+
+				for (int j = 0; j < App->scene_intro->oFactory.allSceneObjects[i]->children.size(); j++)
+				{
+					if(ImGui::TreeNode(App->scene_intro->oFactory.allSceneObjects[i]->children[j]->name))
+						ImGui::TreePop();
+						//App->scene_intro->oFactory.allSceneObjects[i]->children[j];
+				}
+
 
 			ImGui::TreePop();
 		}
