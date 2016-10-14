@@ -235,7 +235,7 @@ void ModuleEditor::DrawGOTree()
 	
 	for (int i = 0; i < App->scene_intro->oFactory.allSceneObjects.size(); i++)
 	{
-		if(ImGui::TreeNodeEx(App->scene_intro->oFactory.allSceneObjects[i]->name))
+		if(ImGui::TreeNode(App->scene_intro->oFactory.allSceneObjects[i]->name))
 		{
 			//Clicked on the hierarchy
 			if (ImGui::IsItemClicked(0)) 
@@ -243,6 +243,12 @@ void ModuleEditor::DrawGOTree()
 				dialogActive = App->scene_intro->oFactory.allSceneObjects[i];
 				int i = 0;
 			}
+			if (ImGui::TreeNode("hello"))
+			{
+				ImGui::TreePop();
+			}
+
+			ImGui::TreePop();
 		}
 	}
 	ImGui::End();
