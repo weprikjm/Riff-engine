@@ -15,13 +15,17 @@
 
 struct riffMesh
 {
-	riffMesh(aiMesh* m) 
+	riffMesh(aiMesh* m, const char* name, int num) 
 	{
-		 numVertex = m->mNumVertices;
-
+		this->name = new char(strlen(name)+1);
+		strcpy(this->name, name);
+		char* tmp = new char(3);
+		strcat(this->name,itoa(num,tmp,10));
+		strcat(this->name,"\0");
+		numVertex = m->mNumVertices;
+		 
 		if (m->mNumVertices > 0)
 		{
-
 			vertices = new float[(m->mNumVertices*3)];
 			
 			memcpy(vertices,m->mVertices,sizeof(float) * m->mNumVertices * 3);
@@ -53,7 +57,7 @@ struct riffMesh
 				memcpy(normals, m->mNormals, sizeof(float) * m->mNumVertices * 3);
 			}
 		}
-
+		
 		numFaces = m->mNumFaces;
 	}
 
@@ -73,7 +77,7 @@ struct riffMesh
 
 	int mesh_id = 0;
 
-
+	char* name;
 };
 
 
