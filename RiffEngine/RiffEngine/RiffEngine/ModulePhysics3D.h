@@ -4,6 +4,7 @@
 #include <list>
 #include "Primitive.h"
 
+
 #include "Bullet\include\btBulletDynamicsCommon.h"
 // Recommended scale is 1.0f == 1 meter, no less than 0.2 objects
 #define GRAVITY btVector3(0.0f, -10.0f, 0.0f) 
@@ -26,9 +27,9 @@ public:
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
-	PhysBody3D* AddBody(const Sphere& sphere, float mass = 1.0f, bool isSensor = false);
-	PhysBody3D* AddBody(const Cube& cube, float mass = 1.0f, bool isSensor = false);
-	PhysBody3D* AddBody(const Cylinder& cylinder, float mass = 1.0f, bool isSensor = false);
+	PhysBody3D* AddBody(const rSphere& sphere, float mass = 1.0f, bool isSensor = false);
+	PhysBody3D* AddBody(const rCube& cube, float mass = 1.0f, bool isSensor = false);
+	PhysBody3D* AddBody(const rCylinder& cylinder, float mass = 1.0f, bool isSensor = false);
 	PhysVehicle3D* AddVehicle(const VehicleInfo& info);
 
 	void AddConstraintP2P(PhysBody3D& bodyA, PhysBody3D& bodyB, const vec3& anchorA, const vec3& anchorB);
@@ -67,6 +68,6 @@ public:
 	int	 getDebugMode() const;
 
 	DebugDrawModes mode;
-	Line line;
+	rLine line;
 	Primitive point;
 };

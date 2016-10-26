@@ -144,7 +144,7 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
 
-	Plane floor(0, 1, 0, 0);
+	rPlane floor(0, 1, 0, 0);
 	floor.axis = true;
 	floor.color.Set(255, 255, 255);
 	floor.Render();

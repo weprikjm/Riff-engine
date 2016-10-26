@@ -46,10 +46,10 @@ riffMesh* ModuleMeshExporter::LoadMesh(const char* path,riffMesh* mesh)
 			tmpMesh = new riffMesh(scene->mMeshes[i], "object_", i);
 			meshes.push_back(tmpMesh);
 			App->scene_intro->oFactory.allSceneObjects.push_back(new GameObject(tmpMesh->name, COMPONENTMESH));
-			ComponentMesh tmp;
-			App->scene_intro->oFactory.allSceneObjects[i]->FindComponent(COMPONENTMESH, &tmp);
+			ComponentMesh* tmp = nullptr;
+			App->scene_intro->oFactory.allSceneObjects[i]->FindComponent(COMPONENTMESH, (Component**)tmp);
 			
-			tmp.AddMesh(tmpMesh);
+			tmp->AddMesh(tmpMesh);
 		}
 
 		//UnloadMesh

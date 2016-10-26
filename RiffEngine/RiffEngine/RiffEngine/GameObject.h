@@ -19,7 +19,7 @@ public:
 	}
 	Component* AddComponent(typeComponent type);
 	GameObject* AddChild(GameObject* go);
-	bool FindComponent(typeComponent type, Component* comp);
+	bool FindComponent(typeComponent type, Component** comp);
 
 	int GetID();
 
